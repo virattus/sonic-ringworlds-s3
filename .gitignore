@@ -1,0 +1,6 @@
+*.cue
+*.iso
+compile_commands.json
+dump.bin
+
+
