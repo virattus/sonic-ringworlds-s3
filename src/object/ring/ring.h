@@ -2,7 +2,8 @@
 #define __RINGWORLDS_RING_H__
 
 
-
+#include <yaul.h>
+#include <mic3d.h>
 #include <stdint.h>
 #include <stdbool.h>
 
@@ -13,24 +14,14 @@
  */
 
 
-typedef struct _obj_ring
-{
-	
-	
-} obj_ring_t;
+
+void Ring_Update(void);
 
 
-typedef struct _obj_loose_ring
-{
-	int16_t lifetime;
-	
-} obj_loose_ring_t;
+void Ring_SetSpriteData(texture_t* tex);
 
-
-bool UpdateRing(obj_ring_t* data);
-
-bool UpdateLooseRing(obj_loose_ring_t* data);
-
+void Ring_AssignSpriteData(vdp1_cmdt_t* cmdt);
+void Ring_ScaleToDepth(vdp1_cmdt_t* cmdt, fix16_t depth_value);
 
 
 #endif

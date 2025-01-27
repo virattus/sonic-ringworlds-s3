@@ -1,46 +1,34 @@
-#ifndef __RINGWORLDS_COLLISION_H__
-#define __RINGWORLDS_COLLISION_H__
+#ifndef __SSEE_COLLISION_H__
+#define __SSEE_COLLISION_H__
 
 
 #include <yaul.h>
 
-#include <stdint.h>
+
+struct COL_AABB;
+struct COL_CAPSULE;
+struct COL_LINE;
+struct COL_PLANE;
+struct COL_POLYGON;
+struct COL_SPHERE;
 
 
-typedef struct _COLLINE
-{
-	fix16_vec3_t start;
-	fix16_vec3_t end;
-} col_line_t;
+
+typedef struct COL_AABB 	col_aabb_t;
+typedef struct COL_CAPSULE 	col_capsule_t;
+typedef struct COL_LINE 	col_line_t;
+typedef struct COL_PLANE 	col_plane_t;
+typedef struct COL_POLYGON 	col_polygon_t;
+typedef struct COL_SPHERE 	col_sphere_t;
 
 
-typedef struct _COLPLANE
-{
-	fix16_vec3_t normal;
-	fix16_t distAlongNormal;
-} col_plane_t;
+//Taken from the fix16 master 
+static inline fix16_t fix16_abs(fix16_t x)
+{ 
+	return (x < 0 ? -x : x); 
+}
 
 
-typedef struct _COLSPHERE
-{
-	fix16_vec3_t pos;
-	fix16_t radius;
-	
-} col_sphere_t;
-
-
-typedef struct _COLAABB
-{
-	fix16_vec3_t min;
-	fix16_vec3_t max;
-} col_aabb_t;
-
-
-typedef struct _COLPOLYGON
-{
-	
-	
-} col_polygon_t;
 
 
 #endif

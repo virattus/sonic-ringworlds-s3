@@ -57,11 +57,7 @@ bool UpdateObject(game_object_t* obj)
 		case OBJECT_NULL:
 			return true;
 		break;
-		case OBJECT_RING:
-			return UpdateRing(obj->data);
-		break;
-		case OBJECT_LOOSE_RING:
-			return UpdateLooseRing(obj->data);
+		default:
 		break;
 	}
 	
