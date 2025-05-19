@@ -22,9 +22,11 @@ SH_SRCS:= \
 	src/globals.c \
 \
 	src/backend/cd_loader.c \
-	src/backend/workarea.c \
-	src/backend/ssv.c \
 	src/backend/rng.c \
+	src/backend/ssv.c \
+	src/backend/state.c \
+	src/backend/texture_load.c \
+	src/backend/workarea.c \
 \
 	src/collision/aabb.c \
 	src/collision/line.c \

@@ -7,6 +7,10 @@
 
 #include "globals.h"
 
+#include "backend/state.h"
+
+#include "states/testcollision.h"
+
 #include "backend/rng.h"
 #include "object/ring/ring_bounce.h"
 #include "collision/polygon.h"
@@ -40,26 +44,6 @@ static texture_t _textures[8];
 static size_t _texture_load(texture_t *textures, uint32_t slot, const picture_t *picture, vdp1_vram_t texture_base);
 static void _palette_load(uint16_t bank_256, uint16_t bank_16, const palette_t *palette);
 
-static vdp1_gouraud_table_t _pool_shading_tables[CONFIG_MIC3D_CMDT_COUNT] __aligned(16);
-static vdp1_gouraud_table_t _pool_shading_tables2[512] __aligned(16);
-
-static workarea_mic3d_depth_values_t _pool_depth_values;
-static workarea_mic3d_z_values_t _pool_z_values;
-static workarea_mic3d_screen_points_t _pool_screen_points;
-static workarea_mic3d_sort_singles_t _pool_sort_singles;
-static workarea_mic3d_cmdts_t _pool_cmdts;
-static workarea_mic3d_render_matrices_t _pool_render_matrices;
-static workarea_mic3d_light_matrices_t _pool_light_matrices;
-static workarea_mic3d_colors_t _pool_colors;
-static workarea_mic3d_work_t _pool_work;
-
-static workarea_mic3d_t _workarea = {
-    &_pool_depth_values,   &_pool_z_values, &_pool_screen_points,
-    &_pool_sort_singles,   &_pool_cmdts,    &_pool_render_matrices,
-    &_pool_light_matrices, &_pool_colors,   &_pool_work
-};
-
-static sort_list_t _sort_list[512] __aligned(4);
 
 
 static uint32_t _frame_time_calculate(void);
@@ -67,6 +51,11 @@ static uint32_t _frame_time_calculate(void);
 
 uint16_t RNGInitialSeed;
 
+
+void testfunc(void)
+{
+	dbgio_printf("called from testfunc");
+}
 
 
 int main()
@@ -204,12 +193,18 @@ int main()
 	
 	RingBounce_SetSpawnSource(&sphere.position);
 
+	GameState_Push(testfunc);
+	
+	GameStateFunc activeFunc;
 		
 	while(true)
 	{
 		char dbgStr[64];
 
 		dbgio_printf("[H[2J");
+		
+		activeFunc = GameState_Current();
+		activeFunc();
 		
 		/*
 		fix16_vec3_str(&polygon.offset[0], dbgStr, 3);

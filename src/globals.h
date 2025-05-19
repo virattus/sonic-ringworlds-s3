@@ -1,6 +1,8 @@
 #ifndef __RINGWORLDS_GLOBAL_DEFINES_H__
 #define __RINGWORLDS_GLOBAL_DEFINES_H__
 
+#include <yaul.h>
+#include <mic3d.h>
 
 #include <stdint.h>
 
@@ -32,6 +34,33 @@
 
 #define GRAVITY 				(FIX16(0.8f / (float)FRAME_RATE))
 #define PLAYER_MAX_SPEED		(FIX16(24.0f / (float)FRAME_RATE))
+
+
+#define USE_MIC3D //make this into a flag
+#ifdef USE_MIC3D
+
+static vdp1_gouraud_table_t _pool_shading_tables[CONFIG_MIC3D_CMDT_COUNT] __aligned(16);
+static vdp1_gouraud_table_t _pool_shading_tables2[512] __aligned(16);
+
+static workarea_mic3d_depth_values_t _pool_depth_values;
+static workarea_mic3d_z_values_t _pool_z_values;
+static workarea_mic3d_screen_points_t _pool_screen_points;
+static workarea_mic3d_sort_singles_t _pool_sort_singles;
+static workarea_mic3d_cmdts_t _pool_cmdts;
+static workarea_mic3d_render_matrices_t _pool_render_matrices;
+static workarea_mic3d_light_matrices_t _pool_light_matrices;
+static workarea_mic3d_colors_t _pool_colors;
+static workarea_mic3d_work_t _pool_work;
+
+static workarea_mic3d_t _workarea = {
+    &_pool_depth_values,   &_pool_z_values, &_pool_screen_points,
+    &_pool_sort_singles,   &_pool_cmdts,    &_pool_render_matrices,
+    &_pool_light_matrices, &_pool_colors,   &_pool_work
+};
+
+static sort_list_t _sort_list[512] __aligned(4);
+
+#endif //USE_MIC3D
 
 
 extern uint32_t FrameCounter;
