@@ -2,25 +2,16 @@
 #define __RINGWORLDS_TEST_COLLISION_STATE_H__
 
 
-#include <yaul.h>
-#include <mic3d.h>
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-
+#include <backend/state.h>
 #include <globals.h>
 
-#include <backend/state.h>
+
+void TestCollisionState_Init(void);
+void TestCollisionState_Free(void);
+void TestCollisionState_Update(void);
 
 
-#include "backend/rng.h"
-#include "object/ring/ring_bounce.h"
-#include "collision/polygon.h"
-#include "collision/collisionWorld.h"
-#include "collision/octree.h"
-
-
+gamestate_t Get_TestCollisionState(void);
 
 
 

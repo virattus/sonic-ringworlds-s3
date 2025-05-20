@@ -1,7 +1,13 @@
 #ifndef __SSEE_STATE_H__
 #define __SSEE_STATE_H__
 
-#include <stdint.h>
+
+#include <yaul.h>
+#include <mic3d.h>
+
+#include "backend/rng.h"
+
+#include <stdlib.h>
 #include <stdbool.h>
 
 

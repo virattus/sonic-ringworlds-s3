@@ -16,7 +16,7 @@ BUILTIN_ASSETS=\
 	assets/mrc_square_16x16.cpd;asset_font_cpd \
 	assets/mrc_square_16x16.pal;asset_font_pal
 
-SH_PROGRAM:= BLUEZ_BOUNCE_BALL
+SH_PROGRAM:= SONIC_RINGWORLDS
 SH_SRCS:= \
 	src/main.c \
 	src/globals.c \
@@ -47,6 +47,8 @@ SH_SRCS:= \
 	src/meshes/mesh_c.c \
 	src/meshes/mesh_sphere.c \
 \
+	src/states/testcollision.c \
+\
 	src/object/object.c \
 	src/object/obj_components.c \
 \
@@ -64,14 +66,14 @@ SH_SRCS:= \
 	graphics/graphics_baku.c \
 \
 
-SH_CFLAGS+= -O2 -I. -DDEBUG -g $(MIC3D_CFLAGS)
+SH_CFLAGS+= -O2 -I. -I./src -DDEBUG -g $(MIC3D_CFLAGS)
 SH_LDFLAGS+= $(MIC3D_LDFLAGS)
 
 IP_VERSION:= V1.000
 IP_RELEASE_DATE:= 20250101
 IP_AREAS:= JTUBKAEL
 IP_PERIPHERALS:= JAMKST
-IP_TITLE:= BLUEZ_BOUNCE_BALL
+IP_TITLE:= SONIC_RINGWORLDS
 IP_MASTER_STACK_ADDR:= 0x06004000
 IP_SLAVE_STACK_ADDR:= 0x06001E00
 IP_1ST_READ_ADDR:= 0x06004000

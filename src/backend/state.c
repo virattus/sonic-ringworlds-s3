@@ -25,6 +25,8 @@ bool GameState_Push(gamestate_t newState)
 	StateStack[StateStackTop] = newState;
 	StateStackTop += 1;
 	
+	newState.InitState();
+	
 	return true;
 }
 
