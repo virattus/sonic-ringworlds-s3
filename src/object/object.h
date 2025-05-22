@@ -2,26 +2,24 @@
 #define __RINGWORLDS_OBJECT_H__
 
 
+#include "objectEntry.h"
+
+#include <globals.h>
+
 #include <stdint.h>
 #include <stdbool.h>
 
 
-#define TEMP_OBJECT_MAX 256
+typedef void (*objectFunc)(game_object_entry_t*);
 
 
-typedef struct _GAME_OBJECT
+typedef struct
 {
-	uint16_t objectType;
-	void* data;
+	objectFunc Init;
+	objectFunc Free;
+	objectFunc Update;
+	
 } game_object_t;
-
-
-void AddObject(game_object_t* obj);
-void RemoveObject(game_object_t* obj);
-
-void UpdateTemporaryObjects(void);
-bool UpdateObject(game_object_t* obj);
-
 
 
 #endif

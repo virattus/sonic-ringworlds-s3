@@ -22,6 +22,7 @@ SH_SRCS:= \
 	src/globals.c \
 \
 	src/backend/cd_loader.c \
+	src/backend/controller.c \
 	src/backend/rng.c \
 	src/backend/ssv.c \
 	src/backend/state.c \
@@ -47,18 +48,26 @@ SH_SRCS:= \
 	src/meshes/mesh_c.c \
 	src/meshes/mesh_sphere.c \
 \
-	src/states/testcollision.c \
-\
-	src/object/object.c \
-	src/object/obj_components.c \
-\
 	src/object/character/character.c \
 \
-	src/object/character/sonic/sonic.c \
+	src/object/character/player/player.c \
+	src/object/character/player/sonic.c \
+	src/object/character/player/tails.c \
+	src/object/character/player/knuckles.c \
+	src/object/character/player/amy.c \
 \
 	src/object/particle/particle.c \
 	src/object/ring/ring.c \
 	src/object/ring/ring_bounce.c \
+\
+	src/object/TPCamera/TPCamera.c \
+\
+	src/states/creditsstate.c \
+	src/states/levelstate.c \
+	src/states/titlestate.c \
+\
+	src/states/cameramovement.c \
+	src/states/testcollision.c \
 \
 	graphics/graphics.c \
 	graphics/graphics_mika.c \

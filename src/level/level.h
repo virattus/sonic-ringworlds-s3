@@ -2,7 +2,7 @@
 #define __RINGWORLDS_LEVEL_H__
 
 
-#include "../object/object.h"
+#include <object/object.h>
 
 #define LEVEL_OBJECT_MAX 32
 
