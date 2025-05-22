@@ -14,7 +14,9 @@ SATCONV:= $(YAUL_INSTALL_ROOT)/bin/satconv$(EXE_EXT)
 # Each asset follows the format: <path>;<symbol>. Duplicates are removed
 BUILTIN_ASSETS=\
 	assets/mrc_square_16x16.cpd;asset_font_cpd \
-	assets/mrc_square_16x16.pal;asset_font_pal
+	assets/mrc_square_16x16.pal;asset_font_pal \
+	assets/yaul.pcm;asset_yaul_pcm8 \
+	assets/sdrv.bin;asset_sound_driver
 
 SH_PROGRAM:= SONIC_RINGWORLDS
 SH_SRCS:= \
@@ -23,6 +25,7 @@ SH_SRCS:= \
 \
 	src/backend/cd_loader.c \
 	src/backend/controller.c \
+	src/backend/ponesound.c \
 	src/backend/rng.c \
 	src/backend/ssv.c \
 	src/backend/state.c \
@@ -67,6 +70,8 @@ SH_SRCS:= \
 	src/states/titlestate.c \
 \
 	src/states/cameramovement.c \
+	src/states/modelloading.c \
+	src/states/soundtest.c \
 	src/states/testcollision.c \
 \
 	graphics/graphics.c \

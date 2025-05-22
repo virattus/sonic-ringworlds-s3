@@ -8,19 +8,11 @@
 #include "globals.h"
 
 #include "states/testcollision.h"
-
-
-static inline int32_t FIX16_TO_INT(fix16_t t)
-{
-	return t >> 16;
-}
+#include "states/modelloading.h"
+#include "states/soundtest.h"
 
 
 static uint32_t _frame_time_calculate(void);
-
-
-uint16_t RNGInitialSeed;
-
 
 
 int main()
@@ -32,7 +24,9 @@ int main()
 	RNG_Initialise(0x3A41);
 	//RNGInitialSeed = RNG_Initialise_RTC(smpc_rtc_time_get()); //TODO use timer after smpc finally works
 
-	GameState_Push(Get_TestCollisionState());
+	//GameState_Push(Get_TestCollisionState());
+	//GameState_Push(Get_ModelLoadState());
+	GameState_Push(Get_SoundTestState());
 	
 	gamestate_t currentState;
 		
