@@ -5,6 +5,16 @@
 #include <backend/state.h>
 
 
+/*
+ * Text to display:
+ * 
+ * Disregard the previous screen
+ * This game is an independently developed fangame.
+ * It is neither licenced nor produced by Sega,
+ * Sonic Team, or any other associated rightsholders.
+ */
+
+
 gamestate_t Get_NotLicencedState(void);
 
 
