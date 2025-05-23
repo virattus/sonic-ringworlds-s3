@@ -7,9 +7,11 @@
 
 #include "globals.h"
 
+//Test states
 #include "states/testcollision.h"
 #include "states/modelloading.h"
 #include "states/soundtest.h"
+#include "states/vdp2_ngbtest.h"
 
 
 static uint32_t _frame_time_calculate(void);
@@ -27,11 +29,14 @@ int main()
 	//GameState_Push(Get_TestCollisionState());
 	//GameState_Push(Get_ModelLoadState());
 	GameState_Push(Get_SoundTestState());
+	//GameState_Push(Get_VDP2NGBTestState());
 	
 	gamestate_t currentState;
 		
 	while(true)
 	{
+		RNG_Generate(); //Advance RNG by at least once per frame
+		
 		dbgio_printf("[H[2J");
 		
 		uint32_t frameT = _frame_time_calculate();

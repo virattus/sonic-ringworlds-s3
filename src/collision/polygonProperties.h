@@ -62,7 +62,7 @@ static inline void PolyProperties_SetVertexCount(polyProperties* p, uint8_t coun
 	assert(count >= POLYGON_VERTEX_COUNT_MIN);
 	
 	*p = 
-		(*p & (~POLYGON_VERTEX_COUNT_MASK)) + 
+		((*p) & (~POLYGON_VERTEX_COUNT_MASK)) + 
 		(count - POLYGON_VERTEX_COUNT_MIN) & POLYGON_VERTEX_COUNT_MASK;
 }
 
@@ -76,7 +76,7 @@ static inline uint8_t PolyProperties_GetVertexCount(polyProperties p)
 
 static inline void PolyProperties_SetPolygonType(polyProperties* p, const polygon_types_t type)
 {
-	*p = (*p & (~POLYGON_TYPE_MASK)) + (type);
+	*p = ((*p) & (~POLYGON_TYPE_MASK)) + (type);
 }
 
 
@@ -88,7 +88,7 @@ static inline uint16_t PolyProperties_GetPolygonType(polyProperties p)
 
 static inline void PolyProperties_SetCollisionMask(polyProperties* p, const polygon_mask_types_t mask)
 {
-	*p = (*p & (~POLYGON_COLL_MASK_TYPE_MASK)) + (mask);
+	*p = ((*p) & (~POLYGON_COLL_MASK_TYPE_MASK)) + (mask);
 }
 
 

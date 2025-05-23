@@ -25,14 +25,25 @@ bool col_Capsule_ContainsPoint(const col_capsule_t* c0, const fix16_vec3_t* p0)
 	return col_Sphere_ContainsPoint(&sphere, p0);
 }
 
-//TODO
+
 bool col_Capsule_SphereIntersection(
 	const col_capsule_t* c0, 
 	const col_sphere_t* s0, 
 	col_resp_t* resp)
 {
 	
-	return false;
+	const col_line_t capLine = (col_line_t){
+		.start = c0->lineStart,
+		.end = c0->lineEnd,
+	};
+	
+	const col_sphere_t capSphere = (col_sphere_t){
+		.position = col_Line_ClosestPoint(&capLine, &s0->position),
+		.radius = c0->radius,
+		.radiusSquared = c0->radiusSquared,
+	};
+	
+	return col_Sphere_SphereIntersection(s0, &capSphere, resp);
 }
 
 //TODO

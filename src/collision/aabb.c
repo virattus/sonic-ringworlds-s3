@@ -21,11 +21,11 @@ static inline bool AxisIntersection(fix16_t min0, fix16_t max0, fix16_t min1, fi
 	
 	if(d0 < d1)
 	{
-		overlap = d0;
+		*overlap = d0;
 	}
 	else
 	{
-		overlap = -d1;
+		*overlap = -d1;
 	}
 	
 	return true;

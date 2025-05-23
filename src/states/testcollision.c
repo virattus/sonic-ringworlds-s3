@@ -6,6 +6,7 @@
 #include "collision/collisionWorld.h"
 #include "collision/octree.h"
 
+#define TEXTURE_MAX_COUNT		(8)
 
 extern const mesh_t mesh_m;
 extern const mesh_t mesh_i;
@@ -21,7 +22,7 @@ extern const picture_t picture_baku;
 
 extern const palette_t palette_baku;
 
-static texture_t _textures[8];
+static texture_t _textures[TEXTURE_MAX_COUNT];
 
 vdp1_vram_partitions_t vdp1_vram_partitions;
 
@@ -44,8 +45,8 @@ void TestCollisionState_Init(void)
 {
 	vdp1_vram_partitions_get(&vdp1_vram_partitions);
 	
-	mic3d_init(&_workarea);
-	render_sort_depth_set(_sort_list, RENDER_SORT_DEPTH);
+	mic3d_init(CreateWorkarea(0)); //TODO set up an address for initialising the workarea
+	render_sort_depth_set(CreateSortList(0, RENDER_SORT_DEPTH), RENDER_SORT_DEPTH); //TODO same
 	
 	tlist_set(_textures, TEXTURE_MAX_COUNT);
 	
@@ -275,7 +276,7 @@ void TestCollisionState_Update(void)
 		fix16_vec3_dup(&sphere.position, &position);
 		fix16_vec3_dup(&coll_array[0].normal, &resolution);
 		
-		fix16_vec3_scale(&coll_array[0].penetration, &resolution);
+		fix16_vec3_scale(coll_array[0].penetration, &resolution);
 		fix16_vec3_add(&resolution, &position, &sphere.position);
 		velocity.y = -velocity.y;
 		//velocity.y = 0;

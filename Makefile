@@ -31,8 +31,8 @@ SH_SRCS:= \
 	src/backend/rng.c \
 	src/backend/ssv.c \
 	src/backend/state.c \
-	src/backend/texture_load.c \
 	src/backend/workarea.c \
+	src/backend/vdp_load.c \
 \
 	src/collision/aabb.c \
 	src/collision/line.c \
@@ -75,6 +75,7 @@ SH_SRCS:= \
 	src/states/modelloading.c \
 	src/states/soundtest.c \
 	src/states/testcollision.c \
+	src/states/vdp2_ngbtest.c \
 \
 	graphics/graphics.c \
 	graphics/graphics_mika.c \
