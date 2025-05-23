@@ -16,6 +16,7 @@ BUILTIN_ASSETS=\
 	assets/mrc_square_16x16.cpd;asset_font_cpd \
 	assets/mrc_square_16x16.pal;asset_font_pal \
 	assets/yaul.pcm;asset_yaul_pcm8 \
+	assets/segascr.raw;asset_segascr_pcm8 \
 	assets/sdrv.bin;asset_sound_driver
 
 SH_PROGRAM:= SONIC_RINGWORLDS

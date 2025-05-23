@@ -34,9 +34,6 @@ int main()
 	{
 		dbgio_printf("[H[2J");
 		
-		currentState = GameState_Current();
-		currentState.UpdateState();
-		
 		uint32_t frameT = _frame_time_calculate();
 	
 		char frameTimeStr[16];
@@ -47,6 +44,10 @@ int main()
 			FrameCounter++, 
 			frameTimeStr
 		);
+		
+		currentState = GameState_Current();
+		currentState.UpdateState();
+		
 		
 		dbgio_flush();
 

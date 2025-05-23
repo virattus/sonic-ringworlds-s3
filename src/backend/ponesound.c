@@ -104,7 +104,7 @@ void ponesound_load_8bit_pcm(void * pcm_ptr, int pcm_size, int pcmNumber, int lo
 	m68k_com->pcmCtrl[pcmNumber].bytes_per_blank = calculate_bytes_per_blank(sampleRate, 1, (VDP2_TVMD_TV_STANDARD_PAL == vdp2_tvmd_tv_standard_get()) ? 1 : 0); //Iniitalize as max volume
 	m68k_com->pcmCtrl[pcmNumber].bitDepth = PCM_TYPE_8BIT; //Select 8-bit
 	m68k_com->pcmCtrl[pcmNumber].loopType = 0; //Initialize as non-looping
-	m68k_com->pcmCtrl[pcmNumber].volume = 7; //Iniitalize as max volume
+	m68k_com->pcmCtrl[pcmNumber].volume = 7; //Initalize as max volume
 }
 
 void ponesound_pcm_play(short pcmNumber, char ctrlType, char volume)
@@ -117,5 +117,5 @@ void ponesound_pcm_play(short pcmNumber, char ctrlType, char volume)
 
 void ponesound_vblank_rq(void * work __unused)
 {
-	m68k_com->start = 1;	
+	m68k_com->start = 1;
 }
