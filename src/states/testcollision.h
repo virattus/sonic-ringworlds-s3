@@ -3,12 +3,7 @@
 
 
 #include <backend/state.h>
-#include <globals.h>
 
-
-void TestCollisionState_Init(void);
-void TestCollisionState_Free(void);
-void TestCollisionState_Update(void);
 
 
 gamestate_t Get_TestCollisionState(void);

@@ -3,12 +3,6 @@
 
 
 #include <backend/state.h>
-#include <globals.h>
-
-
-void SoundTestState_Init(void);
-void SoundTestState_Free(void);
-void SoundTestState_Update(void);
 
 
 gamestate_t Get_SoundTestState(void);

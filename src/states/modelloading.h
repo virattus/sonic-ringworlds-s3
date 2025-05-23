@@ -3,12 +3,7 @@
 
 
 #include <backend/state.h>
-#include <globals.h>
 
-
-void ModelLoadState_Init(void);
-void ModelLoadState_Free(void);
-void ModelLoadState_Update(void);
 
 
 gamestate_t Get_ModelLoadState(void);

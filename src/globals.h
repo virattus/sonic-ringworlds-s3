@@ -6,6 +6,10 @@
 
 #include <stdint.h>
 
+
+#define VIDEO_NTSC
+//#define VIDEO_PAL
+
 #define FRAME_RATE				(30)
 
 /* Normalize the frame rate:
@@ -30,10 +34,6 @@
 
 #define RENDER_SORT_DEPTH		(512)
 #define TEXTURE_MAX_COUNT		(8)
-
-
-#define GRAVITY 				(FIX16(0.8f / (float)FRAME_RATE))
-#define PLAYER_MAX_SPEED		(FIX16(24.0f / (float)FRAME_RATE))
 
 
 #define USE_MIC3D //make this into a flag
@@ -64,6 +64,16 @@ static sort_list_t _sort_list[512] __aligned(4);
 
 
 extern uint32_t FrameCounter;
+
+
+////////Main Gameplay values////////
+
+#define GRAVITY 				(FIX16(0.8f / (float)FRAME_RATE))
+#define PLAYER_MAX_SPEED		(FIX16(24.0f / (float)FRAME_RATE))
+
+#define PERSISTENCE_VALUE_LOC	(LWRAM(0)) //TODO set actual address once the memory map's figured out
+
+////////END Main Gameplay values////////
 
 
 #endif

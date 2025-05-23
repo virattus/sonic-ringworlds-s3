@@ -5,11 +5,6 @@
 #include <backend/state.h>
 
 
-void CameraMovement_Init(void);
-void CameraMovement_Free(void);
-void CameraMovement_Update(void);
-
-
 gamestate_t Get_CameraMovementState(void);
 
 

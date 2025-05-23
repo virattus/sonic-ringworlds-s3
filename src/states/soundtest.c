@@ -13,6 +13,8 @@ extern uint8_t asset_yaul_pcm8[];
 extern uint8_t asset_yaul_pcm8_end[];
 extern uint8_t asset_segascr_pcm8[];
 extern uint8_t asset_segascr_pcm8_end[];
+extern uint8_t asset_ring_collect_pcm8[];
+extern uint8_t asset_ring_collect_pcm8_end[];
 
 
 #define PCM_YAUL (0)
@@ -39,7 +41,8 @@ void SoundTestState_Init(void)
 	PCMAdditionalOffset += asset_yaul_pcm8_end - asset_yaul_pcm8;
 	ponesound_load_8bit_pcm(asset_segascr_pcm8, asset_segascr_pcm8_end - asset_segascr_pcm8, PCM_SEGA, PCM_LOAD_OFFSET + PCMAdditionalOffset, 11025);
 	PCMAdditionalOffset += asset_segascr_pcm8_end - asset_segascr_pcm8;
-	ponesound_load_8bit_pcm(asset_yaul_pcm8, asset_yaul_pcm8_end - asset_yaul_pcm8, PCM_THIRD, PCM_LOAD_OFFSET + PCMAdditionalOffset, 15360);
+	ponesound_load_8bit_pcm(asset_ring_collect_pcm8, asset_ring_collect_pcm8_end - asset_ring_collect_pcm8, PCM_THIRD, PCM_LOAD_OFFSET + PCMAdditionalOffset, 32000);
+	
 	
 	ponesound_set_master_volume(0xF);
 	

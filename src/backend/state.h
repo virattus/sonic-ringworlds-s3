@@ -5,7 +5,8 @@
 #include <yaul.h>
 #include <mic3d.h>
 
-#include "backend/rng.h"
+#include "rng.h"
+#include <globals.h>
 
 #include <stdlib.h>
 #include <stdbool.h>
