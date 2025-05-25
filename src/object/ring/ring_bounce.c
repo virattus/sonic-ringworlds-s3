@@ -1,7 +1,6 @@
 #include "ring_bounce.h"
 
 #include <src/object/ring/ring.h>
-#include <src/backend/rng.h>
 #include <src/collision/collisionWorld.h>
 
 #include <src/globals.h>
@@ -57,17 +56,17 @@ static void RingBounce_GenerateRing(uint8_t index)
 		
 	fix16_vec3_dup(&ringBounceAddSource, &ringBouncePositions[index]);
 	
-	ringBounceVelocities[index].x = (RNG_Generate() << 16);
+	ringBounceVelocities[index].x = rand();
 	ringBounceVelocities[index].y = 0;
-	ringBounceVelocities[index].z = (RNG_Generate() << 16);
+	ringBounceVelocities[index].z = rand();
 	
 	RingBounce_ClampVelocity(index);
 	
 	//fix16_vec3_zero(&ringBounceVelocities[index]);
 	
-	ringBounceVelocities[index].y = (RNG_Generate() << 1); //Should always point up, so we don't care about setting MSB
+	ringBounceVelocities[index].y = (rand() & 0xFFFF) + 0x10000; //Range from 1.0 to 2.0, always positive
 	
-	ringBounceLifetimes[index] = RNG_Generate() | 0x80; //Lifetime range of 127-255
+	ringBounceLifetimes[index] = (rand() & 0x7F) + 0x80; //Lifetime range of 127-255
 	
 	ringBounceTotal++;
 }

@@ -16,6 +16,7 @@
 
 
 static uint32_t _frame_time_calculate(void);
+static void InitialiseRNGAndClock(void);
 
 
 int main()
