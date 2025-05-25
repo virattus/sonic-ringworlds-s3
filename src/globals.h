@@ -54,6 +54,15 @@
 //////// END VDP2 DEFINES ////////
 
 
+//////// SMPC Stuff ////////
+
+
+extern smpc_time_t* smpc_rtc;
+
+
+//////// END SMPC Stuff ////////
+
+
 extern uint32_t FrameCounter;
 
 

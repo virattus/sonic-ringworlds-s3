@@ -28,7 +28,6 @@ SH_SRCS:= \
 	src/backend/cd_loader.c \
 	src/backend/controller.c \
 	src/backend/ponesound.c \
-	src/backend/rng.c \
 	src/backend/ssv.c \
 	src/backend/state.c \
 	src/backend/workarea.c \
@@ -72,6 +71,7 @@ SH_SRCS:= \
 	src/states/titlestate.c \
 \
 	src/states/cameramovement.c \
+	src/states/cdtest.c \
 	src/states/modelloading.c \
 	src/states/soundtest.c \
 	src/states/testcollision.c \

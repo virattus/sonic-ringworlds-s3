@@ -12,6 +12,7 @@
 #include "states/modelloading.h"
 #include "states/soundtest.h"
 #include "states/vdp2_ngbtest.h"
+#include "states/cdtest.h"
 
 
 static uint32_t _frame_time_calculate(void);
@@ -23,20 +24,18 @@ int main()
 	dbgio_dev_default_init(DBGIO_DEV_VDP2_ASYNC);
 	dbgio_dev_font_load();
 	
-	RNG_Initialise(0x3A41);
-	//RNGInitialSeed = RNG_Initialise_RTC(smpc_rtc_time_get()); //TODO use timer after smpc finally works
-
+	InitialiseRNGAndClock();
+	
 	//GameState_Push(Get_TestCollisionState());
 	//GameState_Push(Get_ModelLoadState());
-	GameState_Push(Get_SoundTestState());
+	//GameState_Push(Get_SoundTestState());
 	//GameState_Push(Get_VDP2NGBTestState());
+	GameState_Push(Get_CDTestState());
 	
 	gamestate_t currentState;
 		
 	while(true)
 	{
-		RNG_Generate(); //Advance RNG by at least once per frame
-		
 		dbgio_printf("[H[2J");
 		
 		uint32_t frameT = _frame_time_calculate();
@@ -98,7 +97,7 @@ static void _cpu_frt_ovi_handler(void)
 }
 
 
-void user_init()
+void user_init(void)
 {
 	vdp2_tvmd_display_res_set(VDP2_TVMD_INTERLACE_NONE, VDP2_TVMD_HORZ_NORMAL_B, VDP2_TVMD_VERT_224);
 
@@ -118,7 +117,7 @@ void user_init()
 	cpu_frt_init(CPU_FRT_CLOCK_DIV_32);
 	cpu_frt_ovi_set(_cpu_frt_ovi_handler);
 
-	//cd_block_init();
+	cd_block_init();
 	
 	smpc_peripheral_init();
 	
@@ -127,3 +126,27 @@ void user_init()
 }
 
 
+//taken directly from yaul
+static void InitialiseRNGAndClock(void)
+{
+	vdp2_sync();
+	vdp2_sync_wait();
+	
+	smpc_rtc = smpc_rtc_time_get();
+	smpc_time_dec_t time_dec;
+	
+	// Wait until the SMPC peripheral intback command has been issued at least once
+	vdp2_tvmd_vblank_in_wait();
+	vdp2_tvmd_vblank_out_wait();
+	smpc_peripheral_process();
+	smpc_rtc_time_bcd_from(smpc_rtc, &time_dec);
+	
+	//Initialise C's builtin PRNG with the clock
+	const uint32_t seed = 	((uint32_t)time_dec.month * 2629800UL) +
+							((uint32_t)time_dec.day * 86400UL) +
+							((uint32_t)time_dec.hours * 3600UL) +
+							((uint32_t)time_dec.minutes * 60UL) +
+							(uint32_t)time_dec.seconds;
+	
+	srand(seed);
+}	
