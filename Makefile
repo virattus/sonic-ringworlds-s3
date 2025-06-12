@@ -70,6 +70,7 @@ SH_SRCS:= \
 	src/states/levelstate.c \
 	src/states/titlestate.c \
 \
+	src/states/buhman/slot.c \
 	src/states/cameramovement.c \
 	src/states/cdtest.c \
 	src/states/modelloading.c \

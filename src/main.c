@@ -13,6 +13,7 @@
 #include "states/soundtest.h"
 #include "states/vdp2_ngbtest.h"
 #include "states/cdtest.h"
+#include "states/buhman/slot.h"
 
 
 static uint32_t _frame_time_calculate(void);
@@ -31,7 +32,8 @@ int main()
 	//GameState_Push(Get_ModelLoadState());
 	//GameState_Push(Get_SoundTestState());
 	//GameState_Push(Get_VDP2NGBTestState());
-	GameState_Push(Get_CDTestState());
+	//GameState_Push(Get_CDTestState());
+	GameState_Push(Get_SlotSoundTestState());
 	
 	gamestate_t currentState;
 		
