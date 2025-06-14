@@ -30,10 +30,10 @@ int main()
 	
 	//GameState_Push(Get_TestCollisionState());
 	//GameState_Push(Get_ModelLoadState());
-	//GameState_Push(Get_SoundTestState());
+	GameState_Push(Get_SoundTestState());
 	//GameState_Push(Get_VDP2NGBTestState());
 	//GameState_Push(Get_CDTestState());
-	GameState_Push(Get_SlotSoundTestState());
+	//GameState_Push(Get_SlotSoundTestState());
 	
 	gamestate_t currentState;
 		

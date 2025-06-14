@@ -1,8 +1,10 @@
 #include "slot.h"
 
 
+/*
 #include <backend/buhman_scsp.h>
 #include <backend/buhman_smpc.h>
+*/
 
 #include <yaul.h>
 #include <mic3d.h>
@@ -33,8 +35,9 @@ static bool playingSound = false;
 static int counter = 0;
 
 
-void SoundTestState_Init(void)
+void SlotSoundTestState_Init(void)
 {
+/*
 	while ((smpc.reg.SF & 1) != 0);
 	smpc.reg.SF = 1;
 	smpc.reg.COMREG = COMREG__SNDON;
@@ -63,15 +66,16 @@ void SoundTestState_Init(void)
 	slot.MIXER = MIXER__DISDL(0b101); // disdl dipan efsdl efpan
 
 	slot.LOOP |= LOOP__KYONEX;
+	*/
 }
 
 
-void SoundTestState_Free(void)
+void SlotSoundTestState_Free(void)
 {
 }
 
 
-void SoundTestState_Update(void)
+void SlotSoundTestState_Update(void)
 {
 	
 }
@@ -82,8 +86,8 @@ gamestate_t Get_SlotSoundTestState(void)
 {
 	return (gamestate_t)
 	{
-		.InitState = SoundTestState_Init,
-		.FreeState = SoundTestState_Free,
-		.UpdateState = SoundTestState_Update,
+		.InitState = SlotSoundTestState_Init,
+		.FreeState = SlotSoundTestState_Free,
+		.UpdateState = SlotSoundTestState_Update,
 	};
 }

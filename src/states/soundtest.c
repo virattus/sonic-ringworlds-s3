@@ -59,7 +59,7 @@ void SoundTestState_Update(void)
 {
 	if(!playingSound)
 	{
-		dbgio_printf("Press A or B to start 8-bit PCM\r\n");
+		dbgio_printf("Press A,B, or C to start 8-bit PCM\r\n");
 	
 		smpc_peripheral_process();
 		smpc_peripheral_digital_port(1, &_digital);
