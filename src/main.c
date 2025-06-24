@@ -13,7 +13,7 @@
 #include "states/soundtest.h"
 #include "states/vdp2_ngbtest.h"
 #include "states/cdtest.h"
-#include "states/buhman/slot.h"
+#include "states/rng_output.h"
 
 
 static uint32_t _frame_time_calculate(void);
@@ -30,10 +30,12 @@ int main()
 	
 	//GameState_Push(Get_TestCollisionState());
 	//GameState_Push(Get_ModelLoadState());
-	GameState_Push(Get_SoundTestState());
+	//GameState_Push(Get_SoundTestState());
 	//GameState_Push(Get_VDP2NGBTestState());
 	//GameState_Push(Get_CDTestState());
-	//GameState_Push(Get_SlotSoundTestState());
+	GameState_Push(Get_RNGOutputState());
+	
+	vdp2_scrn_back_color_set(VDP2_VRAM_ADDR(3, 0x01FFFE), RGB1555(1, 0, 3, 15));
 	
 	gamestate_t currentState;
 		
@@ -104,8 +106,7 @@ void user_init(void)
 {
 	vdp2_tvmd_display_res_set(VDP2_TVMD_INTERLACE_NONE, VDP2_TVMD_HORZ_NORMAL_B, VDP2_TVMD_VERT_224);
 
-	vdp2_scrn_back_color_set(VDP2_VRAM_ADDR(3, 0x01FFFE), RGB1555(1, 0, 3, 15));
-	
+	vdp2_scrn_back_color_set(VDP2_VRAM_ADDR(3, 0x01FFFE), RGB1555(1, 0, 0, 0));
 
 	vdp1_sync_interval_set(FRAME_RATE_SYNC);
 
@@ -132,17 +133,14 @@ void user_init(void)
 //taken directly from yaul
 static void InitialiseRNGAndClock(void)
 {
-	vdp2_sync();
-	vdp2_sync_wait();
-	
-	smpc_rtc = smpc_rtc_time_get();
+	const smpc_time_t * const time = smpc_rtc_time_get();
 	smpc_time_dec_t time_dec;
 	
 	// Wait until the SMPC peripheral intback command has been issued at least once
 	vdp2_tvmd_vblank_in_wait();
 	vdp2_tvmd_vblank_out_wait();
 	smpc_peripheral_process();
-	smpc_rtc_time_bcd_from(smpc_rtc, &time_dec);
+	smpc_rtc_time_bcd_from(time, &time_dec);
 	
 	//Initialise C's builtin PRNG with the clock
 	const uint32_t seed = 	((uint32_t)time_dec.month * 2629800UL) +
@@ -151,5 +149,5 @@ static void InitialiseRNGAndClock(void)
 							((uint32_t)time_dec.minutes * 60UL) +
 							(uint32_t)time_dec.seconds;
 	
-	srand(seed);
+	srand(seed);	
 }	

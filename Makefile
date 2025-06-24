@@ -12,13 +12,8 @@ include $(YAUL_INSTALL_ROOT)/share/build.mic3d.mk
 SATCONV:= $(YAUL_INSTALL_ROOT)/bin/satconv$(EXE_EXT)
 
 # Each asset follows the format: <path>;<symbol>. Duplicates are removed
-BUILTIN_ASSETS=\
-	assets/mrc_square_16x16.cpd;asset_font_cpd \
-	assets/mrc_square_16x16.pal;asset_font_pal \
-	assets/yaul.pcm;asset_yaul_pcm8 \
-	assets/segascr.raw;asset_segascr_pcm8 \
-	assets/ring_collect.raw;asset_ring_collect_pcm8 \
-	assets/sdrv.bin;asset_sound_driver
+#BUILTIN_ASSETS=\
+	#assets/mrc_square_16x16.cpd;asset_font_cpd \
 
 SH_PROGRAM:= SONIC_RINGWORLDS
 SH_SRCS:= \
@@ -27,11 +22,12 @@ SH_SRCS:= \
 \
 	src/backend/cd_loader.c \
 	src/backend/controller.c \
-	src/backend/ponesound.c \
 	src/backend/ssv.c \
 	src/backend/state.c \
 	src/backend/workarea.c \
 	src/backend/vdp_load.c \
+\
+	src/backend/sound/soundcontrol.c \
 \
 	src/collision/aabb.c \
 	src/collision/line.c \
@@ -44,13 +40,6 @@ SH_SRCS:= \
 	src/collision/frustum.c \
 \
 	src/level/level.c \
-\
-	src/meshes/mesh_torus.c \
-	src/meshes/mesh_cube.c \
-	src/meshes/mesh_m.c \
-	src/meshes/mesh_i.c \
-	src/meshes/mesh_c.c \
-	src/meshes/mesh_sphere.c \
 \
 	src/object/character/character.c \
 \
@@ -70,18 +59,13 @@ SH_SRCS:= \
 	src/states/levelstate.c \
 	src/states/titlestate.c \
 \
-	src/states/buhman/slot.c \
 	src/states/cameramovement.c \
 	src/states/cdtest.c \
 	src/states/modelloading.c \
 	src/states/soundtest.c \
 	src/states/testcollision.c \
 	src/states/vdp2_ngbtest.c \
-\
-	graphics/graphics.c \
-	graphics/graphics_mika.c \
-	graphics/graphics_tails.c \
-	graphics/graphics_baku.c \
+	src/states/rng_output.c \
 \
 
 SH_CFLAGS+= -O2 -I. -I./src -DDEBUG -g $(MIC3D_CFLAGS)
