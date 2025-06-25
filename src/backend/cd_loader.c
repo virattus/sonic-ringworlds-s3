@@ -10,17 +10,20 @@ static cdfs_filelist_entry_t* file_entries = NULL;
 static bool filelist_Initialised = false;
 
 
+#define FILELIST_ENTRY_SIZE (64)
+
+
 void CD_OpenFileList()
 {
 	assert(!filelist_Initialised);
 	
-	cdfs_filelist_entry_t * const filelist_entries = cdfs_entries_alloc(-1);
+	cdfs_filelist_entry_t * const filelist_entries = cdfs_entries_alloc(FILELIST_ENTRY_SIZE);
 	assert(filelist_entries != NULL);
 	
 	file_entries = filelist_entries;
 
 	cdfs_config_default_set();
-	cdfs_filelist_init(&_filelist, filelist_entries, -1);
+	cdfs_filelist_init(&_filelist, filelist_entries, FILELIST_ENTRY_SIZE);
 	cdfs_filelist_root_read(&_filelist);
 		
 	filelist_Initialised = true;
@@ -32,6 +35,12 @@ void CD_CloseFileList(void)
 	cdfs_entries_free(file_entries);
 
 	filelist_Initialised = false;
+}
+
+
+bool CD_FileListInitialised()
+{
+	return filelist_Initialised;
 }
 
 

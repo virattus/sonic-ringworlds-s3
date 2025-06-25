@@ -20,8 +20,10 @@ void TestADPCMVoice(void)
 
 void SoundTestState_Init(void)
 {
-	LoadSoundDriver();
+	snd_LoadDriver();
 	LoadSamples();
+	
+	
 }
 
 

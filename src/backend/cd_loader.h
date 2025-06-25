@@ -9,6 +9,7 @@
 
 void CD_OpenFileList(void);
 void CD_CloseFileList(void);
+bool CD_FileListInitialised();
 
 const char** CD_GetFileList(void);
 
