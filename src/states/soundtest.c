@@ -17,12 +17,6 @@ void LoadSamples(void)
 }
 
 
-void TestADPCMVoice(void)
-{
-	snd_PlayADPCM(0, 0);
-}
-
-
 void SoundTestState_Init(void)
 {
 	CD_OpenFileList();
@@ -30,9 +24,7 @@ void SoundTestState_Init(void)
 	snd_LoadDriver();
 	LoadSamples();
 	
-	CD_CloseFileList();
-	
-	TestADPCMVoice();
+	CD_CloseFileList();	
 }
 
 
@@ -43,8 +35,44 @@ void SoundTestState_Free(void)
 
 void SoundTestState_Update(void)
 {
-	
 	dbgio_printf("samples size: %i\n", samples_size);
+
+	smpc_peripheral_digital_t digital;
+	smpc_peripheral_process();
+	smpc_peripheral_digital_port(1, &digital);
+	
+	if(digital.pressed.button.a)
+	{
+		snd_PlayADPCM(0, 0);
+	}
+	if(digital.pressed.button.b)
+	{
+		snd_PlayADPCM(1, 1);
+	}
+	if(digital.pressed.button.c)
+	{
+		snd_PlayADPCM(2, 2);
+	}
+	if(digital.pressed.button.x)
+	{
+		snd_PlayADPCM(3, 3);
+	}
+	if(digital.pressed.button.y)
+	{
+		snd_PlayADPCM(4, 4);
+	}
+	if(digital.pressed.button.z)
+	{
+		snd_PlayADPCM(5, 5);
+	}
+	if(digital.pressed.button.l)
+	{
+		snd_PlayADPCM(6, 6);
+	}
+	if(digital.pressed.button.r)
+	{
+		snd_PlayADPCM(7, 7);
+	}
 }
 
 
