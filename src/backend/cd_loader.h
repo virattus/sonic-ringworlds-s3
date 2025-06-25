@@ -18,9 +18,9 @@ uint16_t CD_GetFileEntryCount(void);
 //temporary
 const cdfs_filelist_entry_t* CD_GetFileEntry(uint16_t index);
 
-void CD_LoadFileByIndex(uint16_t index, void* dest);
+uint32_t CD_LoadFileByIndex(uint16_t index, void* dest);
 
-void CD_LoadFile(const char* filename, void* dest);
+uint32_t CD_LoadFile(const char* filename, void* dest);
 
 
 #endif

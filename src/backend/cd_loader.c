@@ -66,18 +66,19 @@ const cdfs_filelist_entry_t* CD_GetFileEntry(uint16_t index)
 }
 
 
-void CD_LoadFileByIndex(uint16_t index, void* dest)
+uint32_t CD_LoadFileByIndex(uint16_t index, void* dest)
 {
 	assert(filelist_Initialised);
 	
 	int32_t ret __unused;
 	ret = cd_block_sectors_read(_filelist.entries[index].starting_fad, dest, _filelist.entries[index].size);
 	assert(ret == 0);
-	return;
+	
+	return _filelist.entries[index].size;
 }
 
 
-void CD_LoadFile(const char* filename, void* dest)
+uint32_t CD_LoadFile(const char* filename, void* dest)
 {
 	assert(filelist_Initialised);
 	
@@ -92,8 +93,7 @@ void CD_LoadFile(const char* filename, void* dest)
 		{
 			if ((strcmp(file_entry->name, filename)) == 0) 
 			{
-				CD_LoadFileByIndex(file_index, dest);
-				return;
+				return CD_LoadFileByIndex(file_index, dest);
 			}
 		}
 	}

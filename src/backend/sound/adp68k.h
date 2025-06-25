@@ -56,6 +56,10 @@ typedef struct
 static volatile SoundControlBlock* const adp68k_scblock = (volatile SoundControlBlock*)SCSPVP(0x080);
 static volatile uint8_t* const adp68k_sdbase = (volatile uint8_t*)SCSPVP(0x2000);
 static volatile uint32_t* const adp68k_effect_table = (volatile uint32_t*)SCSPVP(0x2000);
+/*
+ * The effect table stores the offsets of each sample in big endian
+ * It overlaps with sdbase so that there's not a bunch of wasted space
+ */
 
 
 #endif
