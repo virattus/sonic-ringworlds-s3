@@ -83,6 +83,24 @@ IP_1ST_READ_SIZE:= 0
 
 include $(YAUL_INSTALL_ROOT)/share/build.post.iso-cue.mk
 
+
+adpencode:	Makefile tools/adpcm/adpencode.cpp tools/adpcm/types.h tools/adpcm/tables.h
+		$(CXX) $(CXXFLAGS) $(CPPFLAGS) -o tools/adpencode tools/adpcm/adpencode.cpp -lsndfile
+
+adplink:	Makefile tools/adpcm/adplink.cpp
+		$(CXX) $(CXXFLAGS) $(CPPFLAGS) -o tools/adplink tools/adpcm/adplink.cpp
+
+ADPCOMMON := assets/sounds/common/
+
+adp-common:	adpencode
+		tools/adpencode 2 $(ADPCOMMON)S1_A0.wav $(ADPCOMMON)S1_A0.adp
+
+ADPSAMPLES := $(ADPCOMMON)S1_A0-1bit.adp
+
+samples-aud:	adplink
+		tools/adplink SAMPLES.AUD $(ADPSAMPLES)
+		mv SAMPLES.AUD cd/SAMPLES.AUD
+
 work/mrc_squa.cpd work/mrc_squa.pal: work/mrc_square_16x16.bmp
 	$(ECHO)cd work; $(SATCONV) assets.txt
 	$(ECHO)python work/strip_tle.py work/mrc_squa.tle work/mrc_squa.cpd work/mrc_squa.pal

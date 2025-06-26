@@ -8,9 +8,12 @@
 
 uint32_t samples_size = 0;
 
+bool sample_playback = false;
+
+
 void LoadSamples(void)
 {
-	samples_size = CD_LoadFile("SAMPLES.LAD", LWRAM(0));
+	samples_size = CD_LoadFile("SAMPLES.AUD", LWRAM(0));
 
 	snd_LoadSampleData(0, samples_size, LWRAM(0));
 
@@ -35,25 +38,28 @@ void SoundTestState_Free(void)
 
 void SoundTestState_Update(void)
 {
-	dbgio_printf("samples size: %i\n", samples_size);
+	dbgio_printf("total samples size: %i\n", samples_size);
+	dbgio_printf("ADPCM quality test\nA: 1bit B: 2bit C: 4bit\n");
 
 	smpc_peripheral_digital_t digital;
 	smpc_peripheral_process();
 	smpc_peripheral_digital_port(1, &digital);
 	
-	if(digital.pressed.button.a)
+	if(digital.held.button.a)
 	{
 		snd_PlayADPCM(0, 0);
 	}
-	if(digital.pressed.button.b)
+	if(digital.held.button.b)
 	{
 		snd_PlayADPCM(1, 1);
 	}
-	if(digital.pressed.button.c)
+	if(digital.held.button.c)
 	{
 		snd_PlayADPCM(2, 2);
 	}
-	if(digital.pressed.button.x)
+	
+	/*
+	if(digital.held.button.x)
 	{
 		snd_PlayADPCM(3, 3);
 	}
@@ -73,6 +79,7 @@ void SoundTestState_Update(void)
 	{
 		snd_PlayADPCM(7, 7);
 	}
+	*/
 }
 
 

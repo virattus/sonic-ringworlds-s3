@@ -3,4 +3,13 @@
 compile_commands.json
 dump.bin
 build/*
-cd/A.BIN
+*.adp
+*.AUD
+*.BIN
+*.LAD
+*.LADP
+
+adpencode
+adpencode.exe
+adplink
+adplink.exe
