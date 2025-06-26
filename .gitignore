@@ -8,6 +8,9 @@ build/*
 *.BIN
 *.LAD
 *.LADP
+*-1bit
+*-2bit
+*-4bit
 
 adpencode
 adpencode.exe

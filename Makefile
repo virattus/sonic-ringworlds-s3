@@ -91,13 +91,18 @@ adplink:	Makefile tools/adpcm/adplink.cpp
 		$(CXX) $(CXXFLAGS) $(CPPFLAGS) -o tools/adplink tools/adpcm/adplink.cpp
 
 ADPCOMMON := assets/sounds/common/
+ADPDIRS := $(ADPCOMMON)
+ADPFILES := $(foreach dir,$(ADPDIRS),$(wildcard $(dir)*.wav))
 
 adp-common:	adpencode
-		tools/adpencode 2 $(ADPCOMMON)S1_A0.wav $(ADPCOMMON)S1_A0.adp
+		$(foreach w,$(ADPFILES),./tools/adpencode 2 $(w) $(w)-1bit;)
+		$(foreach w,$(ADPFILES),./tools/adpencode 1 $(w) $(w)-2bit;)
+		$(foreach w,$(ADPFILES),./tools/adpencode 0 $(w) $(w)-4bit;)
+		
 
-ADPSAMPLES := $(ADPCOMMON)S1_A0-1bit.adp
+ADPSAMPLES := $(ADPCOMMON)S1_A0.wav-1bit $(ADPCOMMON)S1_A0.wav-2bit $(ADPCOMMON)S1_A0.wav-4bit $(ADPCOMMON)S1_B5.wav-1bit $(ADPCOMMON)S1_B5.wav-2bit $(ADPCOMMON)S1_B5.wav-4bit $(ADPCOMMON)S1_A1.wav-1bit $(ADPCOMMON)S1_A1.wav-2bit $(ADPCOMMON)S1_A1.wav-4bit $(ADPCOMMON)S1_BE.wav-1bit $(ADPCOMMON)S1_BE.wav-2bit $(ADPCOMMON)S1_BE.wav-4bit
 
-samples-aud:	adplink
+samples-aud:	adplink adp-common
 		tools/adplink SAMPLES.AUD $(ADPSAMPLES)
 		mv SAMPLES.AUD cd/SAMPLES.AUD
 

@@ -7,6 +7,9 @@
 #include <backend/sound/soundcontrol.h>
 
 uint32_t samples_size = 0;
+int32_t currentSample = 0;
+
+#define TOTAL_SAMPLE_TYPES	(4)
 
 bool sample_playback = false;
 
@@ -39,7 +42,9 @@ void SoundTestState_Free(void)
 void SoundTestState_Update(void)
 {
 	dbgio_printf("total samples size: %i\n", samples_size);
-	dbgio_printf("ADPCM quality test\nA: 1bit B: 2bit C: 4bit\n");
+	dbgio_printf("\n\nADPCM quality test\nA: 1bit B: 2bit C: 4bit\nUp/Down: Change Target Sample\n");
+	dbgio_printf("\n\nCurrent Sample: %d\n", currentSample);
+	
 
 	smpc_peripheral_digital_t digital;
 	smpc_peripheral_process();
@@ -47,39 +52,32 @@ void SoundTestState_Update(void)
 	
 	if(digital.held.button.a)
 	{
-		snd_PlayADPCM(0, 0);
+		snd_PlayADPCM(0, currentSample * 3);
 	}
 	if(digital.held.button.b)
 	{
-		snd_PlayADPCM(1, 1);
+		snd_PlayADPCM(1, (currentSample * 3) + 1);
 	}
 	if(digital.held.button.c)
 	{
-		snd_PlayADPCM(2, 2);
+		snd_PlayADPCM(2, (currentSample * 3) + 2);
 	}
-	
-	/*
-	if(digital.held.button.x)
+	if(digital.held.button.up)
 	{
-		snd_PlayADPCM(3, 3);
+		currentSample--;
+		if(currentSample < 0)
+		{
+			currentSample = TOTAL_SAMPLE_TYPES - 1;
+		}
 	}
-	if(digital.pressed.button.y)
+	if(digital.held.button.down)
 	{
-		snd_PlayADPCM(4, 4);
+		currentSample++;
+		if(currentSample >= TOTAL_SAMPLE_TYPES)
+		{
+			currentSample = 0;
+		}
 	}
-	if(digital.pressed.button.z)
-	{
-		snd_PlayADPCM(5, 5);
-	}
-	if(digital.pressed.button.l)
-	{
-		snd_PlayADPCM(6, 6);
-	}
-	if(digital.pressed.button.r)
-	{
-		snd_PlayADPCM(7, 7);
-	}
-	*/
 }
 
 
