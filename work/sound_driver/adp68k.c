@@ -33,6 +33,8 @@ SoundControlBlock screserve __attribute__((section(".control_block")));
 static const uint32 isolator_addr[3] = { (uint32)&isolator, (uint32)&isolator2bit, (uint32)&isolator1bit };
 
 
+//Can confirm now, this thing uses four slots per adpcm slot. So I separated the slot init func
+//in case I need to reinitialise stuff afterwards (Maybe dynamic adpcm slot usage?)
 static INLINE void InitADPCMSlot(unsigned adslot)
 {
   const unsigned nybbles_slot = 0 + (adslot << 1);
