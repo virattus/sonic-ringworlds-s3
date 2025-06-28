@@ -11,6 +11,8 @@ build/*
 *-1bit
 *-2bit
 *-4bit
+work/sound_driver/adp68k.bin
+work/sound_driver/adp68k.elf
 
 adpencode
 adpencode.exe

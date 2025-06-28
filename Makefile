@@ -83,7 +83,6 @@ IP_1ST_READ_SIZE:= 0
 
 include $(YAUL_INSTALL_ROOT)/share/build.post.iso-cue.mk
 
-
 adpencode:	Makefile tools/adpcm/adpencode.cpp tools/adpcm/types.h tools/adpcm/tables.h
 		$(CXX) $(CXXFLAGS) $(CPPFLAGS) -o tools/adpencode tools/adpcm/adpencode.cpp -lsndfile
 
