@@ -89,8 +89,11 @@ adpencode:	Makefile tools/adpcm/adpencode.cpp tools/adpcm/types.h tools/adpcm/ta
 adplink:	Makefile tools/adpcm/adplink.cpp
 		$(CXX) $(CXXFLAGS) $(CPPFLAGS) -o tools/adplink tools/adpcm/adplink.cpp
 
+lz4_be:		Makefile tools/lz4_be.c
+		$(CXX) $(CXXFLAGS) $(CPPFLAGS) -o tools/lz4_be tools/lz4_be.c
+
 sndlink:	Makefile tools/sndlink.c
-		$(CXX) $(CXXFLAGS) -o tools/sndlink tools/sndlink.c
+		$(CXX) $(CXXFLAGS) $(CPPFLAGS) -o tools/sndlink tools/sndlink.c
 
 ADPCOMMON := assets/sounds/common/
 ADPDIRS := $(ADPCOMMON)
