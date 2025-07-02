@@ -55,9 +55,9 @@ fix16_vec3_t col_AABB_GetClosestPoint(const col_aabb_t* a0, const fix16_vec3_t* 
 	assert(p0);
 	
 	fix16_vec3_t point = {
-		.x = max(a0->minExtents.x, min(p0->x, a0->maxExtents.x)),
-		.y = max(a0->minExtents.y, min(p0->y, a0->maxExtents.y)),
-		.z = max(a0->minExtents.z, min(p0->z, a0->maxExtents.z))		
+		.x = MAX(a0->minExtents.x, MIN(p0->x, a0->maxExtents.x)),
+		.y = MAX(a0->minExtents.y, MIN(p0->y, a0->maxExtents.y)),
+		.z = MAX(a0->minExtents.z, MIN(p0->z, a0->maxExtents.z))		
 	};
 	
 	return point;
@@ -146,23 +146,23 @@ bool col_AABB_PlaneIntersection(const col_aabb_t* a0, const col_plane_t* p0)
 
 void col_AABB_ExpandSizePoint(col_aabb_t* a0, const fix16_vec3_t* p0)
 {
-	a0->minExtents.x = min(a0->minExtents.x, p0->x);
-	a0->minExtents.y = min(a0->minExtents.y, p0->y);
-	a0->minExtents.z = min(a0->minExtents.z, p0->z);
+	a0->minExtents.x = MIN(a0->minExtents.x, p0->x);
+	a0->minExtents.y = MIN(a0->minExtents.y, p0->y);
+	a0->minExtents.z = MIN(a0->minExtents.z, p0->z);
 	
-	a0->maxExtents.x = min(a0->maxExtents.x, p0->x);
-	a0->maxExtents.y = min(a0->maxExtents.y, p0->y);
-	a0->maxExtents.z = min(a0->maxExtents.z, p0->z);	
+	a0->maxExtents.x = MIN(a0->maxExtents.x, p0->x);
+	a0->maxExtents.y = MIN(a0->maxExtents.y, p0->y);
+	a0->maxExtents.z = MIN(a0->maxExtents.z, p0->z);	
 }
 
 
 void col_AABB_ExpandSizeAABB(col_aabb_t* a0, const col_aabb_t* a1)
 {
-	a0->minExtents.x = min(a0->minExtents.x, a1->minExtents.x);
-	a0->minExtents.y = min(a0->minExtents.y, a1->minExtents.y);
-	a0->minExtents.z = min(a0->minExtents.z, a1->minExtents.z);
+	a0->minExtents.x = MIN(a0->minExtents.x, a1->minExtents.x);
+	a0->minExtents.y = MIN(a0->minExtents.y, a1->minExtents.y);
+	a0->minExtents.z = MIN(a0->minExtents.z, a1->minExtents.z);
 	
-	a0->maxExtents.x = min(a0->maxExtents.x, a1->maxExtents.x);
-	a0->maxExtents.y = min(a0->maxExtents.y, a1->maxExtents.y);
-	a0->maxExtents.z = min(a0->maxExtents.z, a1->maxExtents.z);	
+	a0->maxExtents.x = MIN(a0->maxExtents.x, a1->maxExtents.x);
+	a0->maxExtents.y = MIN(a0->maxExtents.y, a1->maxExtents.y);
+	a0->maxExtents.z = MIN(a0->maxExtents.z, a1->maxExtents.z);	
 }

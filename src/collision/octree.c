@@ -35,7 +35,7 @@ uint32_t Octree_CreateOctree(
 		col_aabb_t polyBox = col_Polygon_CreateAABB(&polygons[i]);
 		octree_aabb_expandColAABB(&octree->nodes[0].boundingBox, &polyBox);
 		
-		octreePolygon_SetNormal(&octree->polygons[i].faceNormal, &polygons[i].normal);
+		octreePolygon_SetNormal(&octree->polygons[i], &polygons[i].normal);
 		octree->polygons[i].vertexOffset = totalVertexCount;
 		octree->polygons[i].properties = polygons[i].properties;
 		

@@ -35,7 +35,7 @@ bool col_Frustum_PointIntersection(const fix16_vec3_t* p0)
 {
 	fix16_vec3_t targetPos;
 	fix16_vec3_sub(p0, camPosition, &targetPos);
-	fix16_normalize(&targetPos);
+	fix16_vec3_normalize(&targetPos);
 	
 	if(fix16_vec3_dot(forwardVector, &targetPos) >= fovThreshold)
 	{

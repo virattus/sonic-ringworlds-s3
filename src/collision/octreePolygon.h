@@ -54,7 +54,7 @@ typedef struct OCTREE_POLYGON
 
 
 static inline void octreePolygon_GetVertex(
-	octree_vertex_t* vertex,
+	const octree_vertex_t* vertex,
 	fix16_vec3_t* posAddition, 
 	fix16_vec3_t* dest)
 {

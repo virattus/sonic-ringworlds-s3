@@ -56,13 +56,13 @@ static inline void octree_aabb_FromColAABB(octree_aabb_t* o0, const col_aabb_t* 
 
 static inline void octree_aabb_expandColAABB(octree_aabb_t* o0, const col_aabb_t* a0)
 {
-	o0->minX = min(o0->minX, a0->minExtents.x >> 16);
-	o0->minY = min(o0->minY, a0->minExtents.y >> 16);
-	o0->minZ = min(o0->minZ, a0->minExtents.z >> 16);
+	o0->minX = MIN(o0->minX, a0->minExtents.x >> 16);
+	o0->minY = MIN(o0->minY, a0->minExtents.y >> 16);
+	o0->minZ = MIN(o0->minZ, a0->minExtents.z >> 16);
 
-	o0->maxX = max(o0->maxX, a0->maxExtents.x >> 16);
-	o0->maxY = max(o0->maxY, a0->maxExtents.y >> 16);
-	o0->maxZ = max(o0->maxZ, a0->maxExtents.z >> 16);
+	o0->maxX = MAX(o0->maxX, a0->maxExtents.x >> 16);
+	o0->maxY = MAX(o0->maxY, a0->maxExtents.y >> 16);
+	o0->maxZ = MAX(o0->maxZ, a0->maxExtents.z >> 16);
 }
 
 

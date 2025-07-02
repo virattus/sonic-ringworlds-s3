@@ -5,6 +5,8 @@
 #include "plane.h"
 #include "line.h"
 
+#include <mic3d.h>
+
 #include <assert.h>
 
 
@@ -204,7 +206,7 @@ bool col_Polygon_ContainsPoint(const col_polygon_t* p0, const fix16_vec3_t* p1)
 	assert(p0);
 	assert(p1);
 	
-	const uint8_t vertexCount = col_Polygon_GetVertexCount(p0);
+	const uint8_t vertexCount = PolyProperties_GetVertexCount(p0->properties);
 		
 	//Generate cross product for vertex n to zero, we'll compare against this one
 	fix16_vec3_t lastNormal;

@@ -22,13 +22,6 @@ typedef struct COL_POLYGON 	col_polygon_t;
 typedef struct COL_SPHERE 	col_sphere_t;
 
 
-//Taken from the fix16 master 
-static inline fix16_t fix16_abs(fix16_t x)
-{ 
-	return (x < 0 ? -x : x); 
-}
-
-
 
 
 #endif
