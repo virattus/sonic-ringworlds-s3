@@ -21,8 +21,46 @@ static uint32_t _frame_time_calculate(void);
 static void InitialiseRNGAndClock(void);
 
 
+#ifdef PCBUILD
+#define WINDOW_WIDTH 	(352)
+#define WINDOW_HEIGHT 	(224)
+#define WINDOW_SCALE 	(1)
+
+#define SCREEN_WIDTH	(352)
+#define SCREEN_HEIGHT	(224)
+
+void user_init();
+#endif //PCBUILD
+
+
 int main()
-{	
+{
+
+#ifdef PCBUILD
+	Window_Init();
+	
+	gamewindow_t gw;
+	gw.resolution.x = WINDOW_WIDTH * WINDOW_SCALE;
+	gw.resolution.y = WINDOW_HEIGHT * WINDOW_SCALE;
+	gw.displayFramerate = true;
+	gw.limitFramerate = true;
+	gw.win.flags.integerScale = 1;
+	gw.win.flags.fullscreen = false;
+	gw.win.flags.vsync = false;
+	
+	GameWindow_Open(&gw, "Ringworlds Stage 2");
+	
+	int16_vec2_t res = {
+		.x = SCREEN_WIDTH,
+		.y = SCREEN_HEIGHT,
+	};
+	
+	Window_SetInternalResolution(&gw.win, res);
+	
+	user_init();	
+
+#endif //PCBUILD
+	
 	dbgio_init();
 	dbgio_dev_default_init(DBGIO_DEV_VDP2_ASYNC);
 	dbgio_dev_font_load();
@@ -37,11 +75,16 @@ int main()
 	//GameState_Push(Get_RNGOutputState());
 	GameState_Push(Get_MusicTestState());
 	
-	vdp2_scrn_back_color_set(VDP2_VRAM_ADDR(3, 0x01FFFE), RGB1555(1, 0, 3, 15));
+	vdp2_scrn_back_color_set(VDP2_BACK_SCREEN, RGB1555(1, 0, 3, 15));
 	
 	gamestate_t currentState;
-		
+
+
+#ifdef PCBUILD
+	while(GameWindow_HandleEvents())
+#else
 	while(true)
+#endif //PCBUILD
 	{
 		dbgio_printf("[H[2J");
 		
@@ -69,7 +112,19 @@ int main()
 		vdp2_sync();
 		vdp2_sync_wait();
 		
+		
+#ifdef PCBUILD
+		GameWindow_Update(&gw);
+#endif //PCBUILD
 	}
+	
+#ifdef PCBUILD
+	GameWindow_Close(&gw);
+	VDP1_Delete();
+	VDP2_Delete();
+	
+	return 0;
+#endif //PCBUILD
 }
 
 

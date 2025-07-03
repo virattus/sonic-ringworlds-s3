@@ -6,11 +6,11 @@
 #define OCTREES_MAX			(8)
 
 
-static octree_node_t* octrees[OCTREES_MAX];
+static octree_t* octrees[OCTREES_MAX];
 static uint8_t octree_count = 0;
 
 
-bool colworld_BindOctree(octree_node_t* octreeRoot)
+bool colworld_BindOctree(octree_t* octreeRoot)
 {
 	if(octree_count + 1 >= OCTREES_MAX)
 	{
@@ -29,7 +29,7 @@ bool colworld_BindOctree(octree_node_t* octreeRoot)
  * Currently, don't bother with bounds checks
  * for the last entry, since it should never be accessed anyways
  */
-void colworld_RemoveOctree(octree_node_t* octreeRoot)
+void colworld_RemoveOctree(octree_t* octreeRoot)
 {
 	bool foundEntry = false;
 	const uint8_t original_count = octree_count; 	/*
@@ -68,7 +68,7 @@ bool colworld_CheckCollisionSphere(
 	uint8_t totalCollisions = 0;
 	for(int i = 0; i < OCTREES_MAX; i++)
 	{
-		totalCollisions += Octree_SphereCollision(octrees[i], s0, sphereMask, resp_array, maxCollisions);
+		//totalCollisions += Octree_SphereCollision(octrees[i], s0, sphereMask, resp_array, maxCollisions);
 	}
 	
 	return totalCollisions > 0;
@@ -90,7 +90,7 @@ bool colworld_CheckCollisionLine(
 	uint8_t totalCollisions = 0;
 	for(int i = 0; i < OCTREES_MAX; i++)
 	{
-		totalCollisions += Octree_LineCollision(octrees[i], l0, lineMask, resp_array, maxCollisions);
+		//totalCollisions += Octree_LineCollision(octrees[i], l0, lineMask, resp_array, maxCollisions);
 	}
 
 	return totalCollisions > 0;

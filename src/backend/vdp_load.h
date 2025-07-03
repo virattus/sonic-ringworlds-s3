@@ -10,6 +10,7 @@
 #include <stdbool.h>
 
 
+
 /*
  * upload texture to VDP1 memory, and record it into the texture array
  */
@@ -33,13 +34,13 @@ void _cpd_load(uint8_t *cpd_base);
 
 
 /*
- * 
+ * Load a palette
  */
 void _palette_load(rgb1555_t *palette_base);
 
 
 /*
- * 
+ * load a VDP2 map
  */
 void _map_load(const vdp2_scrn_cell_format_t *format, const vdp2_scrn_normal_map_t *normal_map);
 

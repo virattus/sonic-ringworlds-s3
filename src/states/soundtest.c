@@ -1,10 +1,11 @@
 #include "soundtest.h"
 
+#include <backend/cd_loader.h>
+#include <backend/sound/soundcontrol.h>
 
 #include <yaul.h>
 #include <mic3d.h>
 
-#include <backend/sound/soundcontrol.h>
 
 uint32_t samples_size = 0;
 int32_t currentSample = 0;

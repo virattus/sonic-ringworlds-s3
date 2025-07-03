@@ -8,6 +8,7 @@
 
 #define SCSP_SLOT_COUNT				(32)
 
+#ifdef SATURN
 #define SCSPVP(offset)				((volatile void*)(0x25A00000 + (offset)))
 
 //SCSP is already defined in yaul, but I don't want to risk stuff not working yet
@@ -105,7 +106,7 @@ static inline void SCSP_Init(void)
 	{
 		*(volatile uint16_t*)i = 0;
 	}
-#endif
+#endif //__m68k__
 }
 
 
@@ -123,4 +124,6 @@ static volatile uint16_t* const EFREG = (volatile uint16_t*)SCSPVP(0x100EC0); //
 #define DSP_MAKE_MEMS(v)		(((uint32_t)(v & 0xFF) << 16) | (((v) >> 8) & 0xFFFF))
 #define DSP_MAKE_COEF(v)		((v) << 3)
 
-#endif
+#endif //SATURN
+
+#endif //__SSEE_SCSP_REIMP_H__

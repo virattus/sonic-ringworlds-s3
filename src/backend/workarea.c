@@ -51,11 +51,11 @@ workarea_mic3d_t* CreateWorkarea(void* address)
 
 sort_list_t* CreateSortList(void* address, uint16_t count)
 {
-	return &_sort_list;
+	return &_sort_list[0];
 }
 
 
 vdp1_gouraud_table_t* CreateShadingTable(void* address, uint16_t count)
 {
-	return &_pool_shading_tables;
+	return &_pool_shading_tables[0];
 }

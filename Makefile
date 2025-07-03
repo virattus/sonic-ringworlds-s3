@@ -69,7 +69,7 @@ SH_SRCS:= \
 	src/states/musictest.c \
 \
 
-SH_CFLAGS+= -O2 -I. -I./src -DDEBUG -g $(MIC3D_CFLAGS)
+SH_CFLAGS+= -O2 -I. -I./src -DDEBUG -DSATURN -g $(MIC3D_CFLAGS)
 SH_LDFLAGS+= $(MIC3D_LDFLAGS)
 
 IP_VERSION:= V1.000

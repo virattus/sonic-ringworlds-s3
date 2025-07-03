@@ -1,9 +1,9 @@
 #include "ring_bounce.h"
 
-#include <src/object/ring/ring.h>
-#include <src/collision/collisionWorld.h>
+#include "ring.h"
+#include <collision/collisionWorld.h>
 
-#include <src/globals.h>
+#include <globals.h>
 
 #include <assert.h>
 

@@ -20,9 +20,9 @@ void SSV_LoadFromMemory(ssv_mesh_t* mesh, void* ptrData)
 	mesh->points_count = *(uint16_t*)(ptrData);
 	mesh->polygons_count = *(uint16_t*)(ptrData + 1);
 	mesh->frame_count = *(uint16_t*)(ptrData + 2);
-	mesh->fix8_points = (int16_t*)(&ptrData + 3);
-	mesh->face_entries = (uint16_t*)(&ptrData + 3 + ((mesh->points_count * 3) * mesh->frame_count));
-	mesh->normals = (uint8_vec3_t*)(&ptrData + 6 + ((mesh->points_count * 6) * mesh->frame_count) + (mesh->polygons_count * 12));
+	mesh->fix8_points = (fix8_vec3_t*)(&ptrData + 3);
+	mesh->face_entries = (ssv_face_t*)(&ptrData + 3 + ((mesh->points_count * 3) * mesh->frame_count));
+	mesh->normals = (int8_vec3_t*)(&ptrData + 6 + ((mesh->points_count * 6) * mesh->frame_count) + (mesh->polygons_count * 12));
 	mesh->texture_offset = 0;
 }
 

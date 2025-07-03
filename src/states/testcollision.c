@@ -1,6 +1,8 @@
 #include "testcollision.h"
 
-
+#include "backend/workarea.h"
+#include "backend/vdp_load.h"
+#include "object/ring/ring.h"
 #include "object/ring/ring_bounce.h"
 #include "collision/polygon.h"
 #include "collision/collisionWorld.h"
@@ -28,7 +30,7 @@ vdp1_vram_partitions_t vdp1_vram_partitions;
 
 camera_t camera;
 
-octree_node_t testOctree;
+octree_t testOctree;
 
 static fix16_mat43_t world[5];
 static fix16_mat43_t lineMat;

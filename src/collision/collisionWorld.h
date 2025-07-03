@@ -26,8 +26,8 @@ typedef enum
 } colworld_obj_type_t;
 
 
-bool colworld_BindOctree(octree_node_t* octreeRoot);
-void colworld_RemoveOctree(octree_node_t* octreeRoot);
+bool colworld_BindOctree(octree_t* octreeRoot);
+void colworld_RemoveOctree(octree_t* octreeRoot);
 
 //TODO how do we pass this in? A void*? Separate functions for each type?
 uint8_t colworld_BindObject();

@@ -1,5 +1,6 @@
 #include "cdtest.h"
 
+#include <backend/cd_loader.h>
 
 #include <assert.h>
 #include <stdlib.h>

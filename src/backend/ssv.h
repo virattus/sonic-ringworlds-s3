@@ -5,7 +5,6 @@
 #include <yaul.h>
 #include <mic3d.h>
 
-
 #include <stdint.h>
 
 
@@ -18,7 +17,7 @@
 
 
 //typedef int16_t fix8_vec3_t[XYZ];
-typedef struct fix8_vec3
+typedef struct
 {
 	int16_t x;
 	int16_t y;
@@ -47,7 +46,7 @@ typedef struct SSV_MODEL
 	uint16_t texture_offset; 	//TexOffset
 	fix8_vec3_t* fix8_points; 	//PNTBL
 	ssv_face_t* face_entries; 	//FINDX
-	uint8_vec3_t* normals; 		//NINDX 
+	int8_vec3_t* normals; 		//NINDX 
 	
 } ssv_mesh_t;
 
@@ -58,6 +57,7 @@ void SSV_LoadFromMemory(ssv_mesh_t* mesh, void* ptrData);
 
 
 void SSV_DrawMeshAnim(const ssv_mesh_t* mesh, const fix16_mat43_t* worldMatrix, fix16_t frameTime);
+
 
 
 #endif

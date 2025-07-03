@@ -25,7 +25,7 @@
 
 
 
-typedef struct OCTREE_NODE
+typedef struct
 {
 	octree_aabb_t boundingBox;
 	uint16_t dataOffset;
@@ -40,14 +40,14 @@ typedef struct OCTREE_NODE
 } octree_node_t;
 
 
-typedef struct OCTREE_CHILDREN_NODE
+typedef struct
 {
 	uint16_t childNodes[OCTREE_CHILDREN_CHILD_COUNT];
 	
 } octree_children_t;
 
 
-typedef struct OCTREE
+typedef struct
 {
 	octree_node_t* nodes;
 	octree_children_t* children;
@@ -57,9 +57,10 @@ typedef struct OCTREE
 } octree_t;
 
 
-//TODO
 static inline uint8_t OctreeNode_GetCollisionMask(const octree_node_t* node)
 {
+	assert(0); //TODO
+	
 	return 0;
 }
 
