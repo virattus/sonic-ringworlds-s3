@@ -67,6 +67,8 @@ SH_SRCS:= \
 	src/states/vdp2_ngbtest.c \
 	src/states/rng_output.c \
 	src/states/musictest.c \
+	src/states/planerender.c \
+	src/states/customrenderer.c \
 \
 
 SH_CFLAGS+= -O2 -I. -I./src -DDEBUG -DSATURN -g $(MIC3D_CFLAGS)

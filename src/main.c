@@ -15,6 +15,8 @@
 #include "states/cdtest.h"
 #include "states/rng_output.h"
 #include "states/musictest.h"
+#include "states/planerender.h"
+#include "states/customrenderer.h"
 
 
 static uint32_t _frame_time_calculate(void);
@@ -73,7 +75,9 @@ int main()
 	//GameState_Push(Get_VDP2NGBTestState());
 	//GameState_Push(Get_CDTestState());
 	//GameState_Push(Get_RNGOutputState());
-	GameState_Push(Get_MusicTestState());
+	//GameState_Push(Get_MusicTestState());
+	//GameState_Push(Get_PlaneRenderState());
+	GameState_Push(Get_CustomRendererState());
 	
 	vdp2_scrn_back_color_set(VDP2_BACK_SCREEN, RGB1555(1, 0, 3, 15));
 	
