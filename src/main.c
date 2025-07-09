@@ -6,6 +6,7 @@
 #include <stdbool.h>
 
 #include "globals.h"
+#include "backend/debug/debugmenu.h"
 
 //Test states
 #include "states/testcollision.h"
@@ -67,6 +68,8 @@ int main()
 	dbgio_dev_default_init(DBGIO_DEV_VDP2_ASYNC);
 	dbgio_dev_font_load();
 	
+	DebugMenu_SetState(DISPLAY_MEMORY_USAGE);
+	
 	InitialiseRNGAndClock();
 	
 	//GameState_Push(Get_TestCollisionState());
@@ -92,6 +95,7 @@ int main()
 	{
 		dbgio_printf("[H[2J");
 		
+		/*
 		uint32_t frameT = _frame_time_calculate();
 	
 		char frameTimeStr[16];
@@ -102,10 +106,12 @@ int main()
 			FrameCounter++, 
 			frameTimeStr
 		);
+		*/
 		
 		currentState = GameState_Current();
 		currentState.UpdateState();
 		
+		DebugMenu_Draw();
 		
 		dbgio_flush();
 

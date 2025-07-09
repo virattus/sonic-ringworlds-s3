@@ -22,6 +22,8 @@ SH_SRCS:= \
 \
 	src/backend/cd_loader.c \
 	src/backend/controller.c \
+	src/backend/debug/debugmenu_memory.c \
+	src/backend/debug/debugmenu.c \
 	src/backend/ssv.c \
 	src/backend/state.c \
 	src/backend/workarea.c \
