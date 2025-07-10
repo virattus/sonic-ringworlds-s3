@@ -1,24 +1,27 @@
 #include <yaul.h>
 
+#include "debugmenu.h"
+#include "debug_window.h"
 
-static const char teststring[] = {
-	0x01,
-	0x00
-};
-
-static const char TitleBar[] = {
-	"┐\n"
-	"@MEMORY@@@@@@@@@@@@@\n"
-	"@@@@@@@@@@@@@@@@@@@@\n"
-};
 
 unsigned int accumulator = 0;
 
-void DebugMemoryUsage_Draw()
+void DebugMemoryUsage_Update(void)
 {
 	smpc_peripheral_digital_t digital;
 	smpc_peripheral_process();
-	smpc_peripheral_digital_port(1, &digital);
+	smpc_peripheral_digital_port(DEBUG_CONTROLLER_PORT, &digital);
+	
+	
+	if(digital.released.button.l)
+	{
+		DebugMenu_DecrementState();
+	}
+	if(digital.released.button.r)
+	{
+		DebugMenu_IncrementState();
+	}
+	
 	
 	if(digital.held.button.left)
 	{
@@ -41,15 +44,37 @@ void DebugMemoryUsage_Draw()
 	}
 	
 	//dbgio_printf("DebugMemoryUsage_Draw called\n");
-	//dbgio_printf(TitleBar);
 	
+	DebugWindow_ClearCanvas();
 	
+	int16_vec2_t width = {
+		.x = 15,
+		.y = 1,
+	};
+	
+	int16_vec2_t height = {
+		.x = DEBUGWINDOW_MAX_WIDTH - 5,
+		.y = DEBUGWINDOW_MAX_HEIGHT,
+	};
+	
+	DebugWindow_DrawWindow(&width, &height, "MEMORY VIEWER");
+	
+	/*
+	DebugWindow_DrawWindow(
+		INT16_VEC2_INITIALIZER(0, 0),
+		INT16_VEC2_INITIALIZER(DEBUGWINDOW_MAX_WIDTH, DEBUGWINDOW_MAX_HEIGHT),
+		"MEMORY VIEWER");
+	*/
+	
+	DebugWindow_DrawCanvas();
+	/*
 	char charAcc[2];
 	charAcc[0] = (char)accumulator;
 	charAcc[1] = 0;
 	dbgio_printf("ID: %d Char: ", accumulator);
 	dbgio_printf(charAcc);
+	*/
 	
-	dbgio_puts("[7;1H\x04 16X16 FONT TEST! \x04\n");
-	dbgio_puts("\xBB testing \xBC\n");
+	//dbgio_puts("[7;1H\x04 16X16 FONT TEST! \x04\n");
+	//dbgio_puts("\xBB testing \xBC\n");
 }

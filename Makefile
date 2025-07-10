@@ -22,7 +22,13 @@ SH_SRCS:= \
 \
 	src/backend/cd_loader.c \
 	src/backend/controller.c \
+	src/backend/debug/debug_window.c \
+	src/backend/debug/debugmenu_system.c \
+	src/backend/debug/debugmenu_gameplay.c \
 	src/backend/debug/debugmenu_memory.c \
+	src/backend/debug/debugmenu_vdp1.c \
+	src/backend/debug/debugmenu_vdp2.c \
+	src/backend/debug/debugmenu_scsp.c \
 	src/backend/debug/debugmenu.c \
 	src/backend/ssv.c \
 	src/backend/state.c \

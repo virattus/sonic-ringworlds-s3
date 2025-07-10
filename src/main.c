@@ -68,7 +68,7 @@ int main()
 	dbgio_dev_default_init(DBGIO_DEV_VDP2_ASYNC);
 	dbgio_dev_font_load();
 	
-	DebugMenu_SetState(DISPLAY_MEMORY_USAGE);
+	DebugMenu_SetState(DISPLAY_SYSTEM);
 	
 	InitialiseRNGAndClock();
 	
@@ -111,7 +111,7 @@ int main()
 		currentState = GameState_Current();
 		currentState.UpdateState();
 		
-		DebugMenu_Draw();
+		DebugMenu_Update();
 		
 		dbgio_flush();
 
