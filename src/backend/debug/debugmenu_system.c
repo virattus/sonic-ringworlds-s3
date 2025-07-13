@@ -46,7 +46,7 @@ void DebugSystem_Update(smpc_peripheral_digital_t* digital)
 	DebugWindow_DrawLine(&pos, lineBuffer);
 	
 	pos.y += 4;
-	snprintf(lineBuffer, DEBUGWINDOW_MAX_WIDTH, "     Slave CPU: %10u(%10u)", 
+	snprintf(lineBuffer, DEBUGWINDOW_MAX_WIDTH, "    Slave CPU: %10u(%10u)", 
 		levels[PERF_CPU_SLAVE].ticks, 
 		levels[PERF_CPU_SLAVE].maxTicks);
 		

@@ -80,6 +80,7 @@ SH_SRCS:= \
 	src/states/musictest.c \
 	src/states/planerender.c \
 	src/states/customrenderer.c \
+	src/states/consoletest.c \
 \
 
 SH_CFLAGS+= -O2 -I. -I./src -DDEBUG -DSATURN -g $(MIC3D_CFLAGS)
