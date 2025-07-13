@@ -143,7 +143,7 @@ static void PlaneRenderState_Init(void)
 	
 	(void)memset(&cmdt_list->cmdts[0], 0x00, sizeof(vdp1_cmdt_t) * ORDER_COUNT);
 
-	//DebugCmdt_Register(cmdt_list);
+	DebugCmdt_Register(cmdt_list);
 	
 	InitCmds();
 }
