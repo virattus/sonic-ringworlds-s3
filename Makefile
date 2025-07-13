@@ -27,9 +27,12 @@ SH_SRCS:= \
 	src/backend/debug/debugmenu_gameplay.c \
 	src/backend/debug/debugmenu_memory.c \
 	src/backend/debug/debugmenu_vdp1.c \
+	src/backend/debug/debugmenu_cmdt.c \
 	src/backend/debug/debugmenu_vdp2.c \
 	src/backend/debug/debugmenu_scsp.c \
+	src/backend/debug/debugmenu_console.c \
 	src/backend/debug/debugmenu.c \
+	src/backend/perf.c \
 	src/backend/ssv.c \
 	src/backend/state.c \
 	src/backend/workarea.c \

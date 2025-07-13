@@ -2,7 +2,10 @@
 #define __SSEE_DEBUG_VDP1_H__
 
 
-void DebugVDP1_Update(void);
+#include <yaul.h>
+
+
+void DebugVDP1_Update(smpc_peripheral_digital_t* digital);
 
 
 #endif //__SSEE_DEBUG_VDP1_H__

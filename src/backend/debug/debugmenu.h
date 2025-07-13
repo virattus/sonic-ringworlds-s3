@@ -2,26 +2,29 @@
 #define __SSEE_DEBUG_MENU_H__
 
 
-#define DEBUG_CONTROLLER_PORT		(1)
+#include <stdint.h>
 
-typedef enum
-{
-	DISPLAY_OFF = 0,
-	DISPLAY_SYSTEM,
-	DISPLAY_GAMEPLAY_CHEATS,
-	DISPLAY_MEMORY_USAGE,
-	DISPLAY_VDP1,
-	DISPLAY_VDP2,
-	DISPLAY_SCSP,
-	STATE_COUNT
-	
-} debugmenu_state_t;
+
+#define DEBUG_CONTROLLER_PORT			(1)
+
+//list of possible states for debug menu
+//Enum wasn't good enough
+#define DB_STATE_DISPLAY_OFF		(0)
+#define DB_STATE_SYSTEM				(DB_STATE_DISPLAY_OFF + 1)
+#define DB_STATE_CHEATS				(DB_STATE_SYSTEM + 1)
+#define DB_STATE_MEMORY_USAGE		(DB_STATE_CHEATS + 1)
+#define DB_STATE_VDP1				(DB_STATE_MEMORY_USAGE + 1)
+#define DB_STATE_COMMAND_TABLES		(DB_STATE_VDP1 + 1)
+#define DB_STATE_VDP2				(DB_STATE_COMMAND_TABLES + 1)
+#define DB_STATE_SCSP				(DB_STATE_VDP2 + 1)
+#define DB_STATE_CONSOLE			(DB_STATE_SCSP + 1)
+#define DB_STATE_COUNT				(DB_STATE_CONSOLE + 1)
 
 
 void DebugMenu_IncrementState();
 void DebugMenu_DecrementState();
 
-void DebugMenu_SetState(debugmenu_state_t state);
+void DebugMenu_SetState(uint16_t state);
 
 void DebugMenu_Update();
 

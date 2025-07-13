@@ -5,24 +5,8 @@
 
 
 
-void DebugVDP1_Update(void)
-{
-	smpc_peripheral_digital_t digital;
-	smpc_peripheral_process();
-	smpc_peripheral_digital_port(DEBUG_CONTROLLER_PORT, &digital);
-	
-	
-	if(digital.released.button.l)
-	{
-		//DebugMenu_DecrementState();
-	}
-	if(digital.released.button.r)
-	{
-		//DebugMenu_IncrementState();
-	}
-	
-	
-	
+void DebugVDP1_Update(smpc_peripheral_digital_t* digital)
+{	
 	DebugWindow_ClearCanvas();
 	
 	int16_vec2_t width = {

@@ -4,36 +4,55 @@
 #include "debugmenu.h"
 
 
-void DebugSystem_Update(void)
+typedef struct
 {
-	smpc_peripheral_digital_t digital;
-	smpc_peripheral_process();
-	smpc_peripheral_digital_port(DEBUG_CONTROLLER_PORT, &digital);
+	uint32_t ticks;
+	uint32_t maxTicks;
 	
-	
-	if(digital.released.button.l)
-	{
-		DebugMenu_DecrementState();
-	}
-	if(digital.released.button.r)
-	{
-		DebugMenu_IncrementState();
-	}
-	
-	
+} perfLevel_t;
+
+
+perfLevel_t levels[PERF_COUNT];
+
+
+void DebugSystem_SetPerfLevel(uint16_t perfID, uint32_t ticks, uint32_t maxTicks)
+{
+	levels[perfID].ticks = ticks;
+	levels[perfID].maxTicks = maxTicks;
+}
+
+
+void DebugSystem_Update(smpc_peripheral_digital_t* digital)
+{
 	DebugWindow_ClearCanvas();
 	
-	int16_vec2_t width = {
+	int16_vec2_t pos = {
 		.x = 0,
 		.y = 0,
 	};
 	
-	int16_vec2_t height = {
-		.x = DEBUGWINDOW_MAX_WIDTH,
-		.y = DEBUGWINDOW_MAX_HEIGHT,
-	};
+	char lineBuffer[DEBUGWINDOW_MAX_WIDTH];
 	
-	DebugWindow_DrawWindow(&width, &height, "SYSTEM OVERVIEW");
+	DebugWindow_DrawLine(&pos, "DEBUG | SYSTEM OVERVIEW");
 	
-	DebugWindow_DrawCanvas();
+	pos.y = 5;
+	snprintf(lineBuffer, DEBUGWINDOW_MAX_WIDTH, "    Master CPU: %10u(%10u)", 
+		levels[PERF_CPU_MASTER].ticks, 
+		levels[PERF_CPU_MASTER].maxTicks);
+		
+	DebugWindow_DrawLine(&pos, lineBuffer);
+	
+	pos.y += 1;
+	DebugWindow_DrawLine(&pos, lineBuffer);
+	
+	pos.y += 4;
+	snprintf(lineBuffer, DEBUGWINDOW_MAX_WIDTH, "     Slave CPU: %10u(%10u)", 
+		levels[PERF_CPU_SLAVE].ticks, 
+		levels[PERF_CPU_SLAVE].maxTicks);
+		
+	DebugWindow_DrawLine(&pos, lineBuffer);
+	
+	pos.y += 1;
+	DebugWindow_DrawLine(&pos, lineBuffer);
+	
 }

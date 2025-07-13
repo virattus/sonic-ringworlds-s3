@@ -1,4 +1,5 @@
 #include "planerender.h"
+#include "backend/debug/debug.h"
 
 
 #define ORDER_SYSTEM_CLIP_COORDS 	(0)
@@ -142,6 +143,7 @@ static void PlaneRenderState_Init(void)
 	
 	(void)memset(&cmdt_list->cmdts[0], 0x00, sizeof(vdp1_cmdt_t) * ORDER_COUNT);
 
+	//DebugCmdt_Register(cmdt_list);
 	
 	InitCmds();
 }
@@ -156,7 +158,7 @@ static void PlaneRenderState_Update(void)
 {
 	RenderSubdivPlane(&polygon_coords[0], 1, 1);
 	
-	dbgio_printf("AD Slope x: %d y: %d\n", ADSlope.x, ADSlope.y);
+	//dbgio_printf("AD Slope x: %d y: %d\n", ADSlope.x, ADSlope.y);
 	
 	//0 here sets the start of the cmdts to be uploaded, so 
 	//you can use it to skip entries

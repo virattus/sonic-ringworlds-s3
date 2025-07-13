@@ -3,35 +3,19 @@
 
 
 
-void DebugVDP2_Update(void)
-{
-	smpc_peripheral_digital_t digital;
-	smpc_peripheral_process();
-	smpc_peripheral_digital_port(DEBUG_CONTROLLER_PORT, &digital);
-	
-	
-	if(digital.released.button.l)
-	{
-		DebugMenu_DecrementState();
-	}
-	if(digital.released.button.r)
-	{
-		DebugMenu_IncrementState();
-	}
-	
-	
+void DebugVDP2_Update(smpc_peripheral_digital_t* digital)
+{	
 	DebugWindow_ClearCanvas();
 	
 	int16_vec2_t width = {
-		.x = 15,
-		.y = 1,
+		.x = 0,
+		.y = 0,
 	};
 	
 	int16_vec2_t height = {
-		.x = DEBUGWINDOW_MAX_WIDTH - 5,
+		.x = DEBUGWINDOW_MAX_WIDTH,
 		.y = DEBUGWINDOW_MAX_HEIGHT,
 	};
 	
-	DebugWindow_DrawWindow(&width, &height, "VDP2");
-	
+	DebugWindow_DrawWindow(&width, &height, "VDP2");	
 }

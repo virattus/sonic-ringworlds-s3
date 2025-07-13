@@ -2,7 +2,10 @@
 #define __SSEE_DEBUG_GAMEPLAY_H__
 
 
-void DebugGameplay_Update(void);
+#include <yaul.h>
+
+
+void DebugGameplay_Update(smpc_peripheral_digital_t* digital);
 
 
 #endif //__SSEE_DEBUG_GAMEPLAY_H__

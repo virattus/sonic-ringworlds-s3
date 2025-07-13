@@ -2,7 +2,10 @@
 #define __SSEE_DEBUG_MENU_MEMORY_H__
 
 
-void DebugMemoryUsage_Update(void);
+#include <yaul.h>
+
+
+void DebugMemoryUsage_Update(smpc_peripheral_digital_t* digital);
 
 
 #endif //__SSEE_DEBUG_MENU_MEMORY_H__

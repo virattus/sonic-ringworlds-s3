@@ -6,39 +6,24 @@
 
 unsigned int accumulator = 0;
 
-void DebugMemoryUsage_Update(void)
+void DebugMemoryUsage_Update(smpc_peripheral_digital_t* digital)
 {
-	smpc_peripheral_digital_t digital;
-	smpc_peripheral_process();
-	smpc_peripheral_digital_port(DEBUG_CONTROLLER_PORT, &digital);
-	
-	
-	if(digital.released.button.l)
-	{
-		DebugMenu_DecrementState();
-	}
-	if(digital.released.button.r)
-	{
-		DebugMenu_IncrementState();
-	}
-	
-	
-	if(digital.held.button.left)
+	if(digital->held.button.left)
 	{
 		accumulator = (accumulator - 1) & 0xFF;
 	}
 	
-	if(digital.held.button.right)
+	if(digital->held.button.right)
 	{
 		accumulator = (accumulator + 1) & 0xFF;
 	}
 
-	if(digital.held.button.up)
+	if(digital->held.button.up)
 	{
 		accumulator = (accumulator - 10) & 0xFF;
 	}
 	
-	if(digital.held.button.down)
+	if(digital->held.button.down)
 	{
 		accumulator = (accumulator + 10) & 0xFF;
 	}

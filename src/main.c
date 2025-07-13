@@ -68,7 +68,7 @@ int main()
 	dbgio_dev_default_init(DBGIO_DEV_VDP2_ASYNC);
 	dbgio_dev_font_load();
 	
-	DebugMenu_SetState(DISPLAY_SYSTEM);
+	DebugMenu_SetState(DB_STATE_COMMAND_TABLES);
 	
 	InitialiseRNGAndClock();
 	
@@ -79,8 +79,8 @@ int main()
 	//GameState_Push(Get_CDTestState());
 	//GameState_Push(Get_RNGOutputState());
 	//GameState_Push(Get_MusicTestState());
-	//GameState_Push(Get_PlaneRenderState());
-	GameState_Push(Get_CustomRendererState());
+	GameState_Push(Get_PlaneRenderState());
+	//GameState_Push(Get_CustomRendererState());
 	
 	vdp2_scrn_back_color_set(VDP2_BACK_SCREEN, RGB1555(1, 0, 3, 15));
 	
