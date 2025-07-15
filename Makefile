@@ -22,6 +22,12 @@ SH_SRCS:= \
 \
 	src/backend/cd_loader.c \
 	src/backend/controller.c \
+	src/backend/perf.c \
+	src/backend/ssv.c \
+	src/backend/state.c \
+	src/backend/workarea.c \
+	src/backend/vdp_load.c \
+\
 	src/backend/debug/debug_window.c \
 	src/backend/debug/debugmenu_system.c \
 	src/backend/debug/debugmenu_gameplay.c \
@@ -32,11 +38,8 @@ SH_SRCS:= \
 	src/backend/debug/debugmenu_scsp.c \
 	src/backend/debug/debugmenu_console.c \
 	src/backend/debug/debugmenu.c \
-	src/backend/perf.c \
-	src/backend/ssv.c \
-	src/backend/state.c \
-	src/backend/workarea.c \
-	src/backend/vdp_load.c \
+\
+	src/backend/render/light.c \
 \
 	src/backend/sound/soundcontrol.c \
 \
@@ -51,6 +54,7 @@ SH_SRCS:= \
 	src/collision/frustum.c \
 \
 	src/level/level.c \
+	src/level/leveldata.c \
 \
 	src/object/character/character.c \
 \

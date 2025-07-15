@@ -59,6 +59,27 @@ extern uint32_t FrameCounter;
 
 ////////Main Gameplay values////////
 
+#define GAME_FLAG_FREEZE_CMDTS		(0)
+#define GAME_FLAG_FORCE_WIREFRAME	(1)
+#define GAME_FLAG_DISABLE_LIGHTING	(2)
+#define GAME_FLAG_DISABLE_FOG		(3)
+#define GAME_FLAG_DISABLE_LANTERN	(4)
+#define GAME_FLAG_CURR_CMDTS		(5)
+
+#define GAME_FLAG_PLAYER_INVINCIBLE	(8)
+#define GAME_FLAG_ENEMY_INVINCIBLE	(9)
+#define GAME_FLAG_FREE_CAM			(10)
+#define GAME_FLAG_FREEZE_CAM		(11)
+#define GAME_FLAG_CURRENT_LEVEL		(12)
+
+#define GAME_FLAG_COUNT				(32)
+
+extern uint16_t GameFlags[GAME_FLAG_COUNT];
+extern uint16_t GameFlagsMax[GAME_FLAG_COUNT];
+
+
+
+
 #define GRAVITY 				(FIX16(0.8f / (float)FRAME_RATE))
 #define PLAYER_MAX_SPEED		(FIX16(24.0f / (float)FRAME_RATE))
 
